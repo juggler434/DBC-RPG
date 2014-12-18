@@ -4,8 +4,10 @@ DBC-RPG
 #THE Hero's Journey
 
 ###Team Agreements
-- Morning CheckIn, Lunch StandUp, Mid-Afternoon StandUp, Beer @ Whole Foods
+- Morning CheckIn, Lunch StandUp, Mid-Afternoon StandUp, Post DBC Beer @ Whole Foods
 - Mandatory 9AM - 6PM Core Hours (when DBC is open)
+- No Working During Lunch
+- No Merging your Own Work
 - lol i don't know
 - drink lots of beer?
 
