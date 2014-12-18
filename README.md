@@ -4,14 +4,16 @@ DBC-RPG
 #THE Hero's Journey
 
 ###Team Agreements
+- Morning CheckIn, Lunch StandUp, Mid-Afternoon StandUp, Beer @ Whole Foods
+- Mandatory 9AM - 6PM Core Hours (when DBC is open)
+- lol i don't know
+- drink lots of beer?
 
 ###### DRINK LOTS OF BEER
-###### LOTS OF YASS CAT
-###### THE ROOM VIEWINGS
 
 #### Winter Break Schedule: 
 
--Bill will be in Tahoe from: December 26th - January 2nd (Unsure if he will have internet connection in Tahoe)
+-Bill will be in Tahoe from December 26th - January 2nd (Unsure if he will have internet connection in Tahoe)
 
 -Chris will in Southern California from December 20th - January 2nd (Full weekday availability to work from Morning - 4PM)
 
@@ -19,9 +21,9 @@ DBC-RPG
 
 -Angelo will be in SF. (Girlfriend is flying in December 26th, so he will have limited time to work after she arrives)
 
--WHEN DBC IS OPEN: Mandatory 9AM-6PM Core Hours.
-
 ### Resources
+
+Trello Board: https://trello.com/b/7rrtgWlH/dbcrpg
 
 Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_need_to_know_about_pixel_art_60_of/
 
