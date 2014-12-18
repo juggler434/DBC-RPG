@@ -29,19 +29,14 @@ JavaScript:
 
 ###User Stories (MVP)
 ==================
-
-1) I want to start a new game
-
-2) I want to save & load a saved game (implement login system)
-
-3) I want to be able to select a character (gender & stats)
-
-4) I want to be able to move around and interact with the map
-
-5) I want to be able to have turn-based combats
-
-6) I want to pause the game (-save -option -exit)
-
+<ol>
+  <li>I want to start a new game</li>
+  <li>I want to save & load a saved game (implement login system)</li>
+  <li>I want to be able to select a character (gender & stats)</li>
+  <li>I want to be able to move around and interact with the map</li>
+  <li>I want to be able to have turn-based combats</li>
+  <li>I want to pause the game (-save -option -exit)</li>
+</ol>
 
 ICEBOX
 ======
