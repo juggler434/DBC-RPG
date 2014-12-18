@@ -45,10 +45,10 @@ JavaScript:
 
 ICEBOX
 ======
--Items
--Leveling Up/XP
--Stats & Algorithms
--Starting Classes- (front-end, back-end, databases, etc.)
--Party System- (paired-programming, group stuff, people follow each other, etc)
--Ping-Pong- of course..
--Doge- duh, how can you forget that?!
+- Items
+- Leveling Up/XP
+- Stats & Algorithms
+- Starting Classes- (front-end, back-end, databases, etc.)
+- Party System- (paired-programming, group stuff, people follow each other, etc)
+- Ping-Pong- of course..
+- Doge- duh, how can you forget that?!
