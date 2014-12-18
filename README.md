@@ -4,7 +4,11 @@ DBC-RPG
 #THE Hero's Journey
 
 ###Team Agreements
-===============
+
+##### DRINK LOTS OF BEER
+##### LOTS OF YASS CAT
+##### THE ROOM VIEWINGS
+
 ####Winter Break Schedule: 
 
 -Bill will be in Tahoe from: December 26th - January 2nd (Unsure if he will have internet connection in Tahoe)
@@ -18,7 +22,7 @@ DBC-RPG
 -WHEN DBC IS OPEN: Mandatory 9AM-6PM Core Hours.
 
 ###Resources
-=========
+
 Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_need_to_know_about_pixel_art_60_of/
 
 Unity:
@@ -28,7 +32,7 @@ JavaScript:
 
 
 ###User Stories (MVP)
-==================
+
 <ol>
   <li>I want to start a new game</li>
   <li>I want to save & load a saved game (implement login system)</li>
@@ -39,7 +43,7 @@ JavaScript:
 </ol>
 
 ICEBOX
-======
+
 - Items
 - Leveling Up/XP
 - Stats & Algorithms
