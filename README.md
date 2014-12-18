@@ -59,5 +59,6 @@ ICEBOX
 
 ### Random Stats
 - Number of beers consumed
+- Number of party-sized bags of chips eaten: 1
 - Number of hours listening to yass cat
 - Number of times watched "The Room"
