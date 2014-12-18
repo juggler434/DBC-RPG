@@ -5,11 +5,11 @@ DBC-RPG
 
 ###Team Agreements
 
-##### DRINK LOTS OF BEER
-##### LOTS OF YASS CAT
-##### THE ROOM VIEWINGS
+###### DRINK LOTS OF BEER
+###### LOTS OF YASS CAT
+###### THE ROOM VIEWINGS
 
-####Winter Break Schedule: 
+#### Winter Break Schedule: 
 
 -Bill will be in Tahoe from: December 26th - January 2nd (Unsure if he will have internet connection in Tahoe)
 
@@ -21,7 +21,7 @@ DBC-RPG
 
 -WHEN DBC IS OPEN: Mandatory 9AM-6PM Core Hours.
 
-###Resources
+### Resources
 
 Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_need_to_know_about_pixel_art_60_of/
 
@@ -51,3 +51,9 @@ ICEBOX
 - Party System- (paired-programming, group stuff, people follow each other, etc)
 - Ping-Pong- of course..
 - Doge- duh, how can you forget that?!
+
+
+### Random Stats
+- Number of beers consumed
+- Number of hours listening to yass cat
+- Number of times watched "The Room"
