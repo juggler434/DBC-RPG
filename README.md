@@ -34,7 +34,6 @@ Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_nee
 
 Unity:
 
-JavaScript:
 
 
 
@@ -65,3 +64,12 @@ ICEBOX
 - Number of party-sized bags of chips eaten: 2
 - Number of hours watching cat videos: 0.1
 - Number of times watched "The Room"
+
+### Timeline
+December 18: Got our groups, tried deciding between JavaScript Frameworks vs. Unity. Split into pairs to figure out which was best. No conclusions made.
+December 19: Made a decision to use Phaser.io. Able to make a map with a character that was able to access a new state through a door.
+December 20: CHRIS FLEW BACK HOME FOR THE HOLIDAYS! Rest of group continued to work with Phaser, but ran into issues with persistence across states, complex issues, etc. so the team decided to scrap all previous work and spike on Unity/C# because we know Unity will provide the support we need for this game.
+
+Team Doge: Feel free the edit this timeline(or any part of this document anytime, especially if the info isn't corrent, lol).
+
+Our initial goal for a MVP was December 25th, but with switching to Unity on December 20th, this will be a difficult deadline to meet. We'll see as the week progresses.
