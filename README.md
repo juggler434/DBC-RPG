@@ -4,6 +4,7 @@ DBC-RPG
 > **Disclaimer**
 > We are currently working in Unity (Josh) so we still have to understand how to push our files to GitHub!
 
+
 #THE Hero's Journey
 
 ###Team Agreements
@@ -32,7 +33,7 @@ Trello Board: https://trello.com/b/7rrtgWlH/dbcrpg
 
 Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_need_to_know_about_pixel_art_60_of/
 
-Unity:
+Unity: http://stackoverflow.com/questions/21573405/how-to-prepare-a-unity-project-for-git (maybe this? -chris)
 
 
 
