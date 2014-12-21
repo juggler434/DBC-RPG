@@ -1,6 +1,9 @@
 DBC-RPG
 =======
 
+> **Disclaimer**
+> We are currently working in Unity (Josh) so we still have to understand how to push our files to GitHub!
+
 #THE Hero's Journey
 
 ###Team Agreements
@@ -60,5 +63,5 @@ ICEBOX
 ### Random Stats
 - Number of beers consumed: Chris-2, Nick-2, Angelo-2, Bill-3
 - Number of party-sized bags of chips eaten: 2
-- Number of hours listening to yass cat
+- Number of hours watching cat videos: 0.1
 - Number of times watched "The Room"
