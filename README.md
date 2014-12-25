@@ -1,9 +1,13 @@
 DBC-RPG
 =======
 
-> **Disclaimer**
-> We are currently working in Unity (Josh) so we still have to understand how to push our files to GitHub!
+### How to open the Unity Project without messing up
 
+1. Clone the repo on your local machine
+2. Open Unity then go to File -> Open Project and select the whole Unity Folder (NOT the single scene inside!)
+
+If you double-click the single scene to open the project Unity will create a LOT of unnecessary sub-folders for that scene :(
+====================
 
 #THE Hero's Journey
 
@@ -61,7 +65,7 @@ ICEBOX
 
 
 ### Random Stats
-- Number of beers consumed: Chris-2, Nick-5, Angelo-4, Bill-5
+- Number of beers consumed: Chris-2, Nick-5, Angelo-5, Bill-5
 - Number of party-sized bags of chips eaten: 4
 - Number of hours watching cat videos: 0.2
 - Number of times watched "The Room"
