@@ -6,8 +6,7 @@ DBC-RPG
 1. Clone the repo on your local machine
 2. Open Unity then go to File -> Open Project and select the whole Unity Folder (NOT the single scene inside!)
 
-If you double-click the single scene to open the project Unity will create a LOT of unnecessary sub-folders for that scene :(
-====================
+> If you double-click the single scene to open the project Unity will create a LOT of unnecessary sub-folders for that scene :(
 
 #THE Hero's Journey
 
