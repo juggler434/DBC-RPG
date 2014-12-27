@@ -5,6 +5,8 @@ public class MainMenuScripts {
 
 	// DEFINING THE VARIABLES THAT WE WILL NEED
 	private int classSelection;
+	private string playerName = "Enter name...";
+
 	private BaseCharacterClass[] classSelectionInstances = new BaseCharacterClass[3] {new FrontEndClass(), new BackEndClass(), new FullStackClass()};
 	private string[] classSelectionNames = new string[3] {"Front End Developer", "Back End Developer", "Full Stack Developer"};
 	// STAT ALLOCATION MODULE
@@ -29,7 +31,7 @@ public class MainMenuScripts {
 
 		// STORE THE CLASS SELECTION AND GO TO THE NEXT STATE
 		if (GUI.Button (new Rect (50,Screen.height - 200,100,50), "Next")) {
-			ChooseClass(classSelection);
+			SaveClass(classSelection);
 			MainMenuGUI.currentState = MainMenuGUI.CreateAPlayerStates.STATALLOCATION;
 		}
 	}
@@ -39,10 +41,10 @@ public class MainMenuScripts {
 		GUI.Label (new Rect(50,50,100,100), "Stat Allocation");
 
 		// DISPLAY THE STATS
-		statAllocationModule.DisplayStatNames();
-		statAllocationModule.DisplayStatValues();
+		statAllocationModule.DisplayStatAllocation();
 
 		if (GUI.Button (new Rect (50,Screen.height - 200,100,50), "Next")) {
+			SaveStats ();
 			MainMenuGUI.currentState = MainMenuGUI.CreateAPlayerStates.FINALSETUP;
 		}
 	}
@@ -51,9 +53,13 @@ public class MainMenuScripts {
 	public void DisplayFinalSetupItems() {
 		GUI.Label (new Rect(50,50,100,100), "Final Setup");
 
+		playerName = GUI.TextArea(new Rect(50,100,150,50), playerName, 25 );
+
 		if (GUI.Button (new Rect (50,Screen.height - 200,100,50), "Play!")) {
+			SaveFinalSetup();
 			// CHANGE SCENE
-			Debug.Log("Doge");
+			Debug.Log ("Going to Phase0!");
+			Application.LoadLevel("Phase0");
 		}
 	}
 
@@ -67,7 +73,8 @@ public class MainMenuScripts {
 		}
 	}
 
-	private void ChooseClass(int classSelection) {
+	private void SaveClass(int classSelection) {
+		// SAVE THE CLASS
 		if (classSelection == 0) {
 			GameInformation.PlayerClass = new FrontEndClass();
 		} else if (classSelection == 1) {
@@ -75,5 +82,23 @@ public class MainMenuScripts {
 		} else {
 			GameInformation.PlayerClass = new FullStackClass();
 		}
+	}
+
+	private void SaveStats() {
+		// SAVE ALL THE STATS AFTER THE ALLOCATION
+		GameInformation.Strength = statAllocationModule.pointsToAllocate[0];
+		GameInformation.Intellect = statAllocationModule.pointsToAllocate[1];
+		GameInformation.Stamina = statAllocationModule.pointsToAllocate[2];
+		GameInformation.Speed = statAllocationModule.pointsToAllocate[3];
+		GameInformation.Resistance = statAllocationModule.pointsToAllocate[4];
+	}
+
+	private void SaveFinalSetup() {
+		// SAVE ALL THE OTHER INFO 
+		GameInformation.PlayerName = playerName;
+		// DEFAULT
+		GameInformation.PlayerLevel = 1;
+		GameInformation.Gold = 1000;
+
 	}
 }
