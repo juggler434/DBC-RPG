@@ -64,7 +64,7 @@ ICEBOX
 
 
 ### Random Stats
-- Number of beers consumed: Chris-3, Nick-5, Angelo-5, Bill-5
+- Number of beers consumed: Chris-4, Nick-5, Angelo-5, Bill-5
 - Number of party-sized bags of chips eaten: 4
 - Number of hours watching cat videos: 0.2
 - Number of times watched "The Room"
