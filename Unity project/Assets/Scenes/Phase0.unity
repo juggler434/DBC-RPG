@@ -17995,6 +17995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b3b2613f81646b6b4f8d9ba058ecfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: 0
+  text: Greetings, I'm a vase
+  dialogCounter: 0
 --- !u!1001 &8048728
 Prefab:
   m_ObjectHideFlags: 0
@@ -18029,6 +18032,10 @@ Prefab:
     - target: {fileID: 400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
@@ -18153,7 +18160,7 @@ GameObject:
   - 114: {fileID: 474326754}
   m_Layer: 0
   m_Name: First Person Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
