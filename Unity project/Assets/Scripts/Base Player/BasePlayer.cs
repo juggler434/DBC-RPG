@@ -6,7 +6,7 @@ public class BasePlayer {
 	// NAME
 	private string playerName;
 	// LEVEL
-	private string playerLevel;
+	private int playerLevel;
 	// CLASS
 	private BaseCharacterClass playerClass;
 
@@ -26,7 +26,7 @@ public class BasePlayer {
 	// GETTERS AND SETTERS
 
 	public string PlayerName { get; set; }
-	public string PlayerLevel { get; set; }
+	public int PlayerLevel { get; set; }
 	public BaseCharacterClass PlayerClass { get; set; }
 
 	public int Strength 	{ get; set; }
