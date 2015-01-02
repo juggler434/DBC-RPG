@@ -36,10 +36,11 @@ public class ProximityTest : MonoBehaviour {
 			} else if (dialogCounter == 4) {
 				text = "Fuck vases";
 			} else if (dialogCounter == 6) {
-				text = "Doge";
+				text = "Prepare to Battle!";
 			} else if (dialogCounter >= 8) {
 				Time.timeScale = 1;
 				displayText = false;
+				Application.LoadLevel("Battle");
 			}
 		}
 	}

@@ -55,9 +55,9 @@ public class BattleGUI : MonoBehaviour {
 		} else if (currentState == BattleStates.CALCDAMAGE) {
 
 		} else if (currentState == BattleStates.LOSE) {
-			
+			battleScripts.BattleLose();
 		} else if (currentState == BattleStates.WIN) {
-			
+			battleScripts.BattleWin();
 		}
 	}
 }
