@@ -19,8 +19,28 @@ public class ProximityTest : MonoBehaviour {
 
 	// IF THE OBJECTS ARE CLOSE AND WE PRESS M, WE START THE DIALOGUE.
 	void OnGUI () {
-		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.0f && Input.GetKeyUp (KeyCode.M)) {
-			displayText = true;
+		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.0f && Input.GetKeyUp (KeyCode.E)) {
+			++dialogCounter;
+
+			if (dialogCounter == 2) {
+				displayText = true;
+				text = "Yes I'm a vase";
+			} else if (dialogCounter == 4) {
+				text = "Fuck vases";
+			} else if (dialogCounter == 6) {
+				if (!GameInformation.helloWorldDefeated) {
+					text = "Prepare to Battle!";
+				} else {
+					text = "You already defeated me :(";
+				}
+			} else if (dialogCounter >= 8) {
+				Time.timeScale = 1;
+				displayText = false;
+				if (!GameInformation.helloWorldDefeated) {
+					Application.LoadLevel("Battle");
+				}
+			}
+
 		}
 
 		if (displayText) {
@@ -28,21 +48,6 @@ public class ProximityTest : MonoBehaviour {
 			GUI.Box (new Rect(10,Screen.height-220,Screen.width-20,200), text);
 		}
 
-		// BUGBUG: THE COUNTER IS GOING UP BY TWO INSTEAD OF ONE.
-		if (displayText && Input.GetKeyUp(KeyCode.Return)) {
-			++dialogCounter;
-			if (dialogCounter == 2) {
-				text = "Yes I'm a vase";
-			} else if (dialogCounter == 4) {
-				text = "Fuck vases";
-			} else if (dialogCounter == 6) {
-				text = "Prepare to Battle!";
-			} else if (dialogCounter >= 8) {
-				Time.timeScale = 1;
-				displayText = false;
-				Application.LoadLevel("Battle");
-			}
-		}
 	}
 
 

@@ -13,6 +13,10 @@ public class GameInformation : MonoBehaviour {
 	public static string PlayerName 			 { get; set; }
 	public static int PlayerLevel 				 { get; set; }
 	public static BaseCharacterClass PlayerClass { get; set; }
+	public static bool helloWorldDefeated = false;
+
+	// CURRENT POSITION
+	public static Vector3 PlayerPosition { get; set; }
 
 	// STATS
 	public static int Strength   { get; set; }

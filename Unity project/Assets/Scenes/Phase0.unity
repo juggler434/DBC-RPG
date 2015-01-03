@@ -1767,6 +1767,8 @@ GameObject:
   - 33: {fileID: 516}
   - 23: {fileID: 386}
   - 111: {fileID: 654}
+  - 65: {fileID: 153}
+  - 114: {fileID: 302}
   m_Layer: 0
   m_Name: door001
   m_TagString: Untagged
@@ -2679,6 +2681,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!65 &153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0076412, y: 2.51131129, z: .23356986}
+  m_Center: {x: .495873809, y: 1.25565565, z: .00385363866}
 --- !u!4 &154
 Transform:
   m_ObjectHideFlags: 0
@@ -4600,6 +4614,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 154}
   m_RootOrder: 1
+--- !u!114 &302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c020c92e86fdb42ae9db2fc84c6ad460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &304
 Renderer:
   m_ObjectHideFlags: 0

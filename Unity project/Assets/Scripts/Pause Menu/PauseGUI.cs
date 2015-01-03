@@ -8,7 +8,7 @@ public class PauseGUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Doge");
+ 
 	}
 
 

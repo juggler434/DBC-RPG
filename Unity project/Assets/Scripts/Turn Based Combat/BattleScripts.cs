@@ -38,6 +38,7 @@ public class BattleScripts {
 	}
 
 	public void BattleStart() {
+		Debug.Log(GameInformation.helloWorldDefeated);
 		// DECIDE WHO IS GOING FIRST
 		if (GameInformation.Speed >= enemy.Speed) {
 			BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
@@ -74,6 +75,8 @@ public class BattleScripts {
 
 	public void BattleWin() {
 		battleLog = "You Won!";
+		GameInformation.helloWorldDefeated = true;
+		Debug.Log (GameInformation.helloWorldDefeated);
 		Application.LoadLevel("Phase0");
 	}
 
