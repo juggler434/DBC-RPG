@@ -38,6 +38,11 @@ Pixel-Art(?): http://www.reddit.com/r/gamedev/comments/2hdsdi/everything_you_nee
 
 Unity: http://stackoverflow.com/questions/21573405/how-to-prepare-a-unity-project-for-git (maybe this? -chris)
 
+http://www.namekdev.net/2014/08/working-on-workflow-for-unity-and-git/ (posted 1/2/2014 -chris)
+working with git/unity sounds like a nightmare and some merge conflicts can be disastrous..
+in the link above, it contains some resources and pointers on working with git/unity.
+this can end up being very very painful if not done correctly
+
 
 
 
