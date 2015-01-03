@@ -6,6 +6,8 @@ public class BattleGUI : MonoBehaviour {
 
 	public Slider playerHealthSlider;
 	public Slider enemyHealthSlider;
+	public Text playerHealthAmounts;
+	public Text enemyHealthAmounts;
 
 	// STATE MACHINE
 	public enum BattleStates {
@@ -47,6 +49,9 @@ public class BattleGUI : MonoBehaviour {
 		}
 		playerHealthSlider.value = battleScripts.playerCurrentHealth;
 		enemyHealthSlider.value = battleScripts.enemyCurrentHealth;
+		playerHealthAmounts.text = battleScripts.playerCurrentHealth.ToString () + "/" + battleScripts.playerMaxHealth.ToString ();
+		enemyHealthAmounts.text = battleScripts.enemyCurrentHealth.ToString () + "/" + battleScripts.enemyMaxHealth.ToString ();
+		
 
 	}
 
