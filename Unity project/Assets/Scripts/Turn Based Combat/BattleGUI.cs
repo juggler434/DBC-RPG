@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BattleGUI : MonoBehaviour {
+
+	public Slider playerHealthSlider;
+	public Slider enemyHealthSlider;
 
 	// STATE MACHINE
 	public enum BattleStates {
@@ -21,6 +25,8 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.InitializeEnemy();
 
 		currentState = BattleStates.START;
+		playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
+		enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +45,9 @@ public class BattleGUI : MonoBehaviour {
 		case(BattleStates.WIN):
 			break;
 		}
+		playerHealthSlider.value = battleScripts.playerCurrentHealth;
+		enemyHealthSlider.value = battleScripts.enemyCurrentHealth;
+
 	}
 
 	void OnGUI() {

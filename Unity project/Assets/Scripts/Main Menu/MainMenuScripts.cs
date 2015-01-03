@@ -91,6 +91,8 @@ public class MainMenuScripts {
 		GameInformation.Stamina = statAllocationModule.pointsToAllocate[2];
 		GameInformation.Speed = statAllocationModule.pointsToAllocate[3];
 		GameInformation.Resistance = statAllocationModule.pointsToAllocate[4];
+		GameInformation.MaxHealth = calculateMaxHealth ();
+		GameInformation.CurrentHealth = GameInformation.MaxHealth;
 	}
 
 	private void SaveFinalSetup() {
@@ -100,5 +102,10 @@ public class MainMenuScripts {
 		GameInformation.PlayerLevel = 1;
 		GameInformation.Gold = 1000;
 
+	}
+
+
+	public int calculateMaxHealth(){
+		return GameInformation.Resistance * 100;
 	}
 }
