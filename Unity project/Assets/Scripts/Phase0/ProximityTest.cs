@@ -19,7 +19,7 @@ public class ProximityTest : MonoBehaviour {
 
 	// IF THE OBJECTS ARE CLOSE AND WE PRESS M, WE START THE DIALOGUE.
 	void OnGUI () {
-		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 1.0f && Input.GetKeyUp (KeyCode.E)) {
+		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2.0f && Input.GetKeyUp (KeyCode.E)) {
 			++dialogCounter;
 
 			if (dialogCounter == 2) {
