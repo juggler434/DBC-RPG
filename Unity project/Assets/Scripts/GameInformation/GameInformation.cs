@@ -17,6 +17,7 @@ public class GameInformation : MonoBehaviour {
 	public static bool helloWorldDefeated = false;
 	public Slider healthSlider;
 	public Text characterLevel;
+	public Text hpAmounts;
 
 	// CURRENT POSITION
 	public static Vector3 PlayerPosition { get; set; }
@@ -45,6 +46,7 @@ public class GameInformation : MonoBehaviour {
 		healthSlider.maxValue = GameInformation.MaxHealth;
 		healthSlider.value = GameInformation.CurrentHealth;
 		characterLevel.text = GameInformation.PlayerLevel.ToString();
+		hpAmounts.text = GameInformation.CurrentHealth.ToString () + "/" + GameInformation.MaxHealth.ToString ();
 	}
 
 
