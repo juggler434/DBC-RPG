@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BattleScripts {
 
 	private BasePlayer enemy = new BasePlayer();
 
-	private int playerHealth = GameInformation.Stamina * 100;
+	public int playerMaxHealth = GameInformation.MaxHealth;
+	public int playerCurrentHealth = GameInformation.CurrentHealth;
 	private int enemyHealth;
 	private string battleLog = "Default value, change it, doge";
 
@@ -26,7 +28,7 @@ public class BattleScripts {
 	public void BattleMainItems() {
 		// PLAYER
 		GUI.Label (new Rect(50,50,200,50), GameInformation.PlayerName);
-		GUI.Label (new Rect(50,100,200,50), "Health: " + playerHealth.ToString());
+		GUI.Label (new Rect(50,100,200,50), "Health: " + playerCurrentHealth.ToString());
 
 		// ENEMY
 		GUI.Label (new Rect(Screen.width-250,50,200,50), enemy.PlayerName);
@@ -103,9 +105,9 @@ public class BattleScripts {
 		} else if (BattleGUI.currentState == BattleGUI.BattleStates.ENEMYCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
 			int calcDamage = enemy.Strength * Random.Range (8,12);
-			playerHealth -= calcDamage;
+			playerCurrentHealth -= calcDamage;
 			// IF THE PLAYER HEALTH IS 0, LOSE, OTHERWISE, PLAYERCHOICE
-			if (playerHealth > 0) {
+			if (playerCurrentHealth > 0) {
 				BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
 			} else {
 				BattleGUI.currentState = BattleGUI.BattleStates.LOSE;
@@ -127,9 +129,9 @@ public class BattleScripts {
 		} else if (BattleGUI.currentState == BattleGUI.BattleStates.ENEMYCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
 			int calcDamage = enemy.Intellect * Random.Range (7,13);
-			playerHealth -= calcDamage;
+			playerCurrentHealth -= calcDamage;
 			// IF THE PLAYER HEALTH IS 0, LOSE, OTHERWISE, PLAYERCHOICE
-			if (playerHealth > 0) {
+			if (playerCurrentHealth > 0) {
 				BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
 			} else {
 				BattleGUI.currentState = BattleGUI.BattleStates.LOSE;

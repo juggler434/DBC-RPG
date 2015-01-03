@@ -105,7 +105,7 @@ public class MainMenuScripts {
 	}
 
 
-	private int calculateMaxHealth(){
-		return GameInformation.Resistance * 10;
+	public int calculateMaxHealth(){
+		return GameInformation.Resistance * 100;
 	}
 }
