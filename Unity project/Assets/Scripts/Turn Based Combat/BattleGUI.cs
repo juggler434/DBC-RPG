@@ -27,14 +27,16 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.InitializeEnemy();
 
 		currentState = BattleStates.START;
-		playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
-		enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		switch(currentState){
 		case(BattleStates.START):
+			battleScripts.BattleStart();
+			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
+			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
 			break;
 		case(BattleStates.PLAYERCHOICE):
 			break;
@@ -55,23 +57,23 @@ public class BattleGUI : MonoBehaviour {
 
 	}
 
-	void OnGUI() {
-		// DISPLAY ITEMS THAT WILL BE FIXED DURING THE BATTLE
-		battleScripts.BattleMainItems();
-
-		// DISPLAY CUSTOM ITEMS THAT WILL CHANGE DEPENDING ON THE BATTLE STATE
-		if (currentState == BattleStates.START) {
-			battleScripts.BattleStart();
-		} else if (currentState == BattleStates.PLAYERCHOICE) {
-			battleScripts.BattlePlayerChoice();
-		} else if (currentState == BattleStates.ENEMYCHOICE) {
-			battleScripts.BattleEnemyChoice();
-		} else if (currentState == BattleStates.CALCDAMAGE) {
-
-		} else if (currentState == BattleStates.LOSE) {
-			battleScripts.BattleLose();
-		} else if (currentState == BattleStates.WIN) {
-			battleScripts.BattleWin();
-		}
-	}
+//	void OnGUI() {
+//		// DISPLAY ITEMS THAT WILL BE FIXED DURING THE BATTLE
+//		battleScripts.BattleMainItems();
+//
+//		// DISPLAY CUSTOM ITEMS THAT WILL CHANGE DEPENDING ON THE BATTLE STATE
+//		if (currentState == BattleStates.START) {
+//			battleScripts.BattleStart();
+//		} else if (currentState == BattleStates.PLAYERCHOICE) {
+//			battleScripts.BattlePlayerChoice();
+//		} else if (currentState == BattleStates.ENEMYCHOICE) {
+//			battleScripts.BattleEnemyChoice();
+//		} else if (currentState == BattleStates.CALCDAMAGE) {
+//
+//		} else if (currentState == BattleStates.LOSE) {
+//			battleScripts.BattleLose();
+//		} else if (currentState == BattleStates.WIN) {
+//			battleScripts.BattleWin();
+//		}
+//	}
 }

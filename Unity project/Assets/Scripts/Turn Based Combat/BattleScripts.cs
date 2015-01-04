@@ -17,13 +17,13 @@ public class BattleScripts {
 		enemy.PlayerName = "Your enemy";
 		enemy.PlayerLevel = Random.Range (GameInformation.PlayerLevel, GameInformation.PlayerLevel + 2);
 		// ENEMY STATS
-		enemy.Strength = 10;
-		enemy.Intellect = 10;
-		enemy.Stamina = 10;
-		enemy.Speed = 10;
-		enemy.Resistance = 10;
+		enemy.Ruby = 10;
+		enemy.JavaScript = 10;
+		enemy.SQL = 10;
+		enemy.KeyboardShortCuts = 10;
+		enemy.Security = 10;
 		// ENEMY HP
-		enemyMaxHealth = enemy.Stamina * 100;
+		enemyMaxHealth = enemy.Security * 100;
 		enemyCurrentHealth = enemyMaxHealth;
 	}
 
@@ -44,7 +44,7 @@ public class BattleScripts {
 	public void BattleStart() {
 		Debug.Log(GameInformation.helloWorldDefeated);
 		// DECIDE WHO IS GOING FIRST
-		if (GameInformation.Speed >= enemy.Speed) {
+		if (GameInformation.KeyboardShortcuts >= enemy.KeyboardShortCuts) {
 			BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
 		} else {
 			BattleGUI.currentState = BattleGUI.BattleStates.ENEMYCHOICE;
@@ -93,10 +93,10 @@ public class BattleScripts {
 	// HELPER FUNCTIONS //
 	//==================//
 
-	private void StrengthAttack() {
+	private void RubyAttack() {
 		if (BattleGUI.currentState == BattleGUI.BattleStates.PLAYERCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
-			int calcDamage = GameInformation.Strength * Random.Range (8,12);
+			int calcDamage = GameInformation.Ruby * Random.Range (8,12);
 			enemyCurrentHealth -= calcDamage;
 			// IF THE ENEMY HEALTH IS 0, WIN, OTHERWISE, ENEMYCHOICE
 			if (enemyCurrentHealth > 0) {
@@ -106,7 +106,7 @@ public class BattleScripts {
 			}
 		} else if (BattleGUI.currentState == BattleGUI.BattleStates.ENEMYCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
-			int calcDamage = enemy.Strength * Random.Range (8,12);
+			int calcDamage = enemy.Ruby * Random.Range (8,12);
 			playerCurrentHealth -= calcDamage;
 			// IF THE PLAYER HEALTH IS 0, LOSE, OTHERWISE, PLAYERCHOICE
 			if (playerCurrentHealth > 0) {
@@ -117,10 +117,10 @@ public class BattleScripts {
 		} 
 	}
 
-	private void IntellectAttack() {
+	private void JavaScriptAttack() {
 		if (BattleGUI.currentState == BattleGUI.BattleStates.PLAYERCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
-			int calcDamage = GameInformation.Intellect * Random.Range (7,13);
+			int calcDamage = GameInformation.JavaScript * Random.Range (7,13);
 			enemyCurrentHealth -= calcDamage;
 			// IF THE ENEMY HEALTH IS 0, WIN, OTHERWISE, ENEMYCHOICE
 			if (enemyCurrentHealth > 0) {
@@ -130,7 +130,7 @@ public class BattleScripts {
 			}
 		} else if (BattleGUI.currentState == BattleGUI.BattleStates.ENEMYCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
-			int calcDamage = enemy.Intellect * Random.Range (7,13);
+			int calcDamage = enemy.JavaScript * Random.Range (7,13);
 			playerCurrentHealth -= calcDamage;
 			// IF THE PLAYER HEALTH IS 0, LOSE, OTHERWISE, PLAYERCHOICE
 			if (playerCurrentHealth > 0) {

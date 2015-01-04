@@ -8,11 +8,11 @@ public class FullStackClass : BaseCharacterClass {
 		CharacterClassName = "Full Stack Developer";
 		CharacterClassDescription = "A well rounded class for the developer who never asks.";
 		// STATS
-		Strength = 12;
-		Intellect = 12;
-		Stamina = 12;
-		Speed = 14;
-		Resistance = 10;
+		Ruby = 12;
+		JavaScript = 12;
+		SQL = 12;
+		KeyboardShortcuts = 14;
+		Security = 10;
 	}
 	
 }

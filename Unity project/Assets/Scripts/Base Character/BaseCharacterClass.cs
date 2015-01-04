@@ -8,11 +8,11 @@ public class BaseCharacterClass {
 	private string characterClassDescription;
 
 	// STATS
-	private int strength;
-	private int intellect;
-	private int stamina;
-	private int speed;
-	private int resistance;
+	private int ruby;
+	private int javaScript;
+	private int sQL;
+	private int keyboardShortcuts;
+	private int security;
 
 	// GETTERS AND SETTERS
 
@@ -20,10 +20,10 @@ public class BaseCharacterClass {
 	public string CharacterClassName { get; set; }
 	public string CharacterClassDescription { get; set; }
 	// STATS
-	public int Strength { get; set; }
-	public int Intellect { get; set; }
-	public int Stamina { get; set; }
-	public int Speed { get; set; }
-	public int Resistance { get; set; }
+	public int Ruby { get; set; }
+	public int JavaScript { get; set; }
+	public int SQL { get; set; }
+	public int KeyboardShortcuts { get; set; }
+	public int Security { get; set; }
 	
 }

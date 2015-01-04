@@ -8,11 +8,11 @@ public class BackEndClass : BaseCharacterClass {
 		CharacterClassName = "Back End Developer";
 		CharacterClassDescription = "Always worried about solidity and performance, the back end developer ensures everything's running smoothly.";
 		// STATS
-		Strength = 14;
-		Intellect = 9;
-		Stamina = 11;
-		Speed = 14;
-		Resistance = 12;
+		Ruby = 14;
+		JavaScript = 9;
+		SQL = 11;
+		KeyboardShortcuts = 14;
+		Security = 12;
 	}
 	
 }
