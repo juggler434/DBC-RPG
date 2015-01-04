@@ -53,10 +53,10 @@ public class BattleScripts {
 
 	public void BattlePlayerChoice() {
 		// DISPLAY BUTTONS OF THE ATTACKS
-		if (GUI.Button(new Rect(50,200,150,50), "Strength Attack")) {
+		if (GUI.Button(new Rect(50,200,150,50), "Ruby Attack")) {
 			RubyAttack();
 		}
-		if (GUI.Button(new Rect(50,260,150,50), "Intellect Attack")) {
+		if (GUI.Button(new Rect(50,260,150,50), "JavaScript Attack")) {
 			JavaScriptAttack();
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
