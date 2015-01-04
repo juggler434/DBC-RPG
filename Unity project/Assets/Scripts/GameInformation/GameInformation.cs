@@ -23,11 +23,11 @@ public class GameInformation : MonoBehaviour {
 	public static Vector3 PlayerPosition { get; set; }
 
 	// STATS
-	public static int Strength   { get; set; }
-	public static int Intellect  { get; set; }
-	public static int Stamina 	 { get; set; }
-	public static int Speed		 { get; set; }
-	public static int Resistance { get; set; }
+	public static int Ruby   { get; set; }
+	public static int JavaScript  { get; set; }
+	public static int SQL 	 { get; set; }
+	public static int KeyboardShortcuts		 { get; set; }
+	public static int Security { get; set; }
 
 	// GOLD
 	public static int Gold		 { get; set; }

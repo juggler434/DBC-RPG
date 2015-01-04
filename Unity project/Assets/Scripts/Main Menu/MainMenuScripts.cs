@@ -86,11 +86,11 @@ public class MainMenuScripts {
 
 	private void SaveStats() {
 		// SAVE ALL THE STATS AFTER THE ALLOCATION
-		GameInformation.Strength = statAllocationModule.pointsToAllocate[0];
-		GameInformation.Intellect = statAllocationModule.pointsToAllocate[1];
-		GameInformation.Stamina = statAllocationModule.pointsToAllocate[2];
-		GameInformation.Speed = statAllocationModule.pointsToAllocate[3];
-		GameInformation.Resistance = statAllocationModule.pointsToAllocate[4];
+		GameInformation.Ruby = statAllocationModule.pointsToAllocate[0];
+		GameInformation.JavaScript = statAllocationModule.pointsToAllocate[1];
+		GameInformation.SQL = statAllocationModule.pointsToAllocate[2];
+		GameInformation.KeyboardShortcuts = statAllocationModule.pointsToAllocate[3];
+		GameInformation.Security = statAllocationModule.pointsToAllocate[4];
 		GameInformation.MaxHealth = calculateMaxHealth ();
 		GameInformation.CurrentHealth = GameInformation.MaxHealth;
 	}
@@ -106,6 +106,6 @@ public class MainMenuScripts {
 
 
 	public int calculateMaxHealth(){
-		return GameInformation.Resistance * 100;
+		return GameInformation.Security * 100;
 	}
 }

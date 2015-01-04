@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StatAllocationModule {
 	
-	private string[] statNames = new string[5] {"Strength", "Intellect", "Stamina", "Speed", "Resistance"};
+	private string[] statNames = new string[5] {"Ruby", "JavaScript", "SQL", "Keyboard Shortcuts", "Security"};
 	private int statPointsToAllocate = 5;
 
 	public int[] pointsToAllocate = new int[5];
@@ -25,20 +25,20 @@ public class StatAllocationModule {
 		// WE CAN CALL PLAYERCLASS BECAUSE WE STORED THE INFORMATION IN THE PREVIOUS STATE
 		BaseCharacterClass cClass = GameInformation.PlayerClass;
 		
-		pointsToAllocate[0] = cClass.Strength;
-		baseStatPoints[0] = cClass.Strength;
+		pointsToAllocate[0] = cClass.Ruby;
+		baseStatPoints[0] = cClass.Ruby;
 		
-		pointsToAllocate[1] = cClass.Intellect;
-		baseStatPoints[1] = cClass.Intellect;
+		pointsToAllocate[1] = cClass.JavaScript;
+		baseStatPoints[1] = cClass.JavaScript;
 		
-		pointsToAllocate[2] = cClass.Stamina;
-		baseStatPoints[2] = cClass.Stamina;
+		pointsToAllocate[2] = cClass.SQL;
+		baseStatPoints[2] = cClass.SQL;
 		
-		pointsToAllocate[3] = cClass.Speed;
-		baseStatPoints[3] = cClass.Speed;
+		pointsToAllocate[3] = cClass.KeyboardShortcuts;
+		baseStatPoints[3] = cClass.KeyboardShortcuts;
 
-		pointsToAllocate[4] = cClass.Resistance;
-		baseStatPoints[4] = cClass.Resistance;
+		pointsToAllocate[4] = cClass.Security;
+		baseStatPoints[4] = cClass.Security;
 	}
 
 	private void DisplayStatValues() {

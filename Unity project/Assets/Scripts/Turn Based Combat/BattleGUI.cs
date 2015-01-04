@@ -27,14 +27,16 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.InitializeEnemy();
 
 		currentState = BattleStates.START;
-		playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
-		enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		switch(currentState){
 		case(BattleStates.START):
+			battleScripts.BattleStart();
+			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
+			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
 			break;
 		case(BattleStates.PLAYERCHOICE):
 			break;
