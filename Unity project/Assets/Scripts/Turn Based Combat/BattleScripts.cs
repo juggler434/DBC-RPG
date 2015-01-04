@@ -54,10 +54,10 @@ public class BattleScripts {
 	public void BattlePlayerChoice() {
 		// DISPLAY BUTTONS OF THE ATTACKS
 		if (GUI.Button(new Rect(50,200,150,50), "Strength Attack")) {
-			StrengthAttack();
+			RubyAttack();
 		}
 		if (GUI.Button(new Rect(50,260,150,50), "Intellect Attack")) {
-			IntellectAttack();
+			JavaScriptAttack();
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
@@ -69,9 +69,9 @@ public class BattleScripts {
 		GUI.Button(new Rect(Screen.width-250,260,150,50), "Intellect Attack");
 
 		if (Random.Range (0,2) == 1) {
-			StrengthAttack();
+			RubyAttack();
 		} else {
-			IntellectAttack();
+			JavaScriptAttack();
 		}
 		// DECIDE (RANDOMLY FOR NOW) WHICH ATTACK TO PERFORM AND FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE PLAYER HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO LOSE
