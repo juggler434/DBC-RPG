@@ -8,11 +8,11 @@ public class FrontEndClass : BaseCharacterClass {
 		CharacterClassName = "Front End Developer";
 		CharacterClassDescription = "The Front End Developer creates beautiful user interfaces with his knowledge and wizardry";
 		// STATS
-		Strength = 9;
-		Intellect = 14;
-		Stamina = 13;
-		Speed = 11;
-		Resistance = 13;
+		Ruby = 9;
+		JavaScript = 14;
+		SQL = 13;
+		KeyboardShortcuts = 11;
+		Security = 13;
 	}
 	
 }
