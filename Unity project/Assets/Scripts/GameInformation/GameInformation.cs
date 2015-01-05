@@ -29,9 +29,9 @@ public class GameInformation : MonoBehaviour {
 	public static int SQL 	 { get; set; }
 	public static int KeyboardShortcuts		 { get; set; }
 	public static int Security { get; set; }
-	
-	public static BaseAbility playerMoveOne = PutsAbility();
-	public static BaseAbility playerMoveTwo = ConsoleLogAbility();
+
+	public static BaseAbility PlayerMoveOne = new Puts();
+	public static BaseAbility PlayerMoveTwo = new ConsoleLog();
 
 	// GOLD
 	public static int Gold		 { get; set; }
