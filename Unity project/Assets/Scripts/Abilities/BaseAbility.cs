@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public class BaseAbilitiy {
+public class BaseAbility {
 
 
 	private string abilityName;

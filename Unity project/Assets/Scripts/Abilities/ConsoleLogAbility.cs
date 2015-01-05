@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ConsoleLogAbility : BaseAbilitiy {
+nhfpublic class ConsoleLogAbility : BaseAbility {
 
 	public void ConsoleLog(){
 		AbilityName = "Console.log()";

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameInformation : MonoBehaviour {
 
@@ -28,6 +29,9 @@ public class GameInformation : MonoBehaviour {
 	public static int SQL 	 { get; set; }
 	public static int KeyboardShortcuts		 { get; set; }
 	public static int Security { get; set; }
+	
+	public static BaseAbility playerMoveOne = PutsAbility();
+	public static BaseAbility playerMoveTwo = ConsoleLogAbility();
 
 	// GOLD
 	public static int Gold		 { get; set; }

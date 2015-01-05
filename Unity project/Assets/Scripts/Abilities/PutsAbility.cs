@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PutsAbility : BaseAbilitiy {
+public class PutsAbility : BaseAbility {
 
 	public void RubyAttack(){
 		AbilityName = "Puts";
