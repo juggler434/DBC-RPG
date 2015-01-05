@@ -42,7 +42,6 @@ public class BattleScripts {
 	}
 
 	public void BattleStart() {
-		Debug.Log(GameInformation.helloWorldDefeated);
 		// DECIDE WHO IS GOING FIRST
 		if (GameInformation.KeyboardShortcuts >= enemy.KeyboardShortCuts) {
 			BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
@@ -54,10 +53,10 @@ public class BattleScripts {
 	public void BattlePlayerChoice() {
 		// DISPLAY BUTTONS OF THE ATTACKS
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
-			RubyAttack();
+			enemyCurrentHealth -= CalculateDamage(GameInformation.PlayerMoveOne);
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
-			JavaScriptAttack();
+			enemyCurrentHealth -= CalculateDamage(GameInformation.PlayerMoveTwo);
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
@@ -94,6 +93,8 @@ public class BattleScripts {
 	//==================//
 
 	private int CalculateDamage(BaseAbility attack){
+		Debug.Log (attack.Stat);
+		Debug.Log (attack.AbilityPower);
 		return (attack.AbilityPower + attack.Stat) * Random.Range (8, 12);
 	}
 

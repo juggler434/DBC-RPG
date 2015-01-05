@@ -24,14 +24,14 @@ public class GameInformation : MonoBehaviour {
 	public static Vector3 PlayerPosition { get; set; }
 
 	// STATS
-	public static int Ruby   { get; set; }
-	public static int JavaScript  { get; set; }
-	public static int SQL 	 { get; set; }
+	public static int Ruby   		{ get; set; }
+	public static int JavaScript  	{ get; set; }
+	public static int SQL 	 		{ get; set; }
 	public static int KeyboardShortcuts		 { get; set; }
 	public static int Security { get; set; }
 
-	public static BaseAbility PlayerMoveOne = new Puts();
-	public static BaseAbility PlayerMoveTwo = new ConsoleLog();
+	public static BaseAbility PlayerMoveOne { get; set; }
+	public static BaseAbility PlayerMoveTwo { get; set; }
 
 	// GOLD
 	public static int Gold		 { get; set; }
