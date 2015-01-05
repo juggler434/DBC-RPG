@@ -4,76 +4,75 @@ using System.Collections;
 
 public class BattleGUI : MonoBehaviour {
 
-	public Slider playerHealthSlider;
-	public Slider enemyHealthSlider;
-	public Text playerHealthAmounts;
-	public Text enemyHealthAmounts;
-
-	// STATE MACHINE
-	public enum BattleStates {
-		START,
-		PLAYERCHOICE,
-		ENEMYCHOICE,
-		CALCDAMAGE,
-		LOSE,
-		WIN
-	}
-
-	public static BattleStates currentState;
+	private string battleLog = "Prepare for Battle";
 	private BattleScripts battleScripts = new BattleScripts();
+	public RawImage explosion; 
 
-	void Start () {
-		// INITIALIZE THE ENEMY WITH THE STATS
-		battleScripts.InitializeEnemy();
-
-		currentState = BattleStates.START;
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		switch(currentState){
-		case(BattleStates.START):
-			battleScripts.BattleStart();
-			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
-			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
-			break;
-		case(BattleStates.PLAYERCHOICE):
-			break;
-		case(BattleStates.ENEMYCHOICE):
-			break;
-		case(BattleStates.CALCDAMAGE):
-			break;
-		case(BattleStates.LOSE):
-			break;
-		case(BattleStates.WIN):
-			break;
+	public void ToggleExplosionOn(){
+		explosion.enabled = explosion.enabled;
 		}
-		playerHealthSlider.value = battleScripts.playerCurrentHealth;
-		enemyHealthSlider.value = battleScripts.enemyCurrentHealth;
-		playerHealthAmounts.text = battleScripts.playerCurrentHealth.ToString () + "/" + battleScripts.playerMaxHealth.ToString ();
-		enemyHealthAmounts.text = battleScripts.enemyCurrentHealth.ToString () + "/" + battleScripts.enemyMaxHealth.ToString ();
-		
+
+	public void ToggleExplosionOff(){
+		explosion.enabled = !explosion.enabled;
+	}
+	
+	void Start(){
+		ToggleExplosionOff ();
+	}
+
+	void Update(){
 
 	}
 
-	void OnGUI() {
-		// DISPLAY ITEMS THAT WILL BE FIXED DURING THE BATTLE
-		battleScripts.BattleMainItems();
-
-		// DISPLAY CUSTOM ITEMS THAT WILL CHANGE DEPENDING ON THE BATTLE STATE
-		if (currentState == BattleStates.START) {
-			battleScripts.BattleStart();
-		} else if (currentState == BattleStates.PLAYERCHOICE) {
-			battleScripts.BattlePlayerChoice();
-		} else if (currentState == BattleStates.ENEMYCHOICE) {
-			battleScripts.BattleEnemyChoice();
-		} else if (currentState == BattleStates.CALCDAMAGE) {
-
-		} else if (currentState == BattleStates.LOSE) {
-			battleScripts.BattleLose();
-		} else if (currentState == BattleStates.WIN) {
-			battleScripts.BattleWin();
+	void OnGUI(){
+		BattleMainItems ();
+		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
+			BattlePlayerChoice ();
+		}else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE){
+			BattleStateMachine.battleScripts.BattleEnemyChoice ();
 		}
+
 	}
+
+	private IEnumerator Wait(){
+		ToggleExplosionOff();
+		yield return new WaitForSeconds(2);
+		ToggleExplosionOff();
+	}
+
+
+
+	public void BattleMainItems() {
+		// LOG BOX
+		GUI.Box (new Rect(10,Screen.height-210,Screen.width-20,200), battleLog);
+
+	}
+	public void BattlePlayerChoice() {
+		// DISPLAY BUTTONS OF THE ATTACKS
+		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
+//			battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+
+//			ToggleExplosionOn();
+			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+			StartCoroutine(Wait());
+//			System.Threading.Thread.Sleep(1000);
+//			ToggleExplosionOff();
+			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+			}else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+			}
+		}
+		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
+			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
+			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+			}else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+			}
+		}
+		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
+		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
+	}
+
 }
