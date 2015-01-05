@@ -24,9 +24,9 @@ public class ProximityTest : MonoBehaviour {
 
 			if (dialogCounter == 2) {
 				displayText = true;
-				text = "Yes I'm a vase";
+				text = "Hello, My name is Maria and I will be leading you through DBC-RPG Phase 0!";
 			} else if (dialogCounter == 4) {
-				text = "Fuck vases";
+				text = "When you defeat me, you will be allowed to move on to Phase 0.";
 			} else if (dialogCounter == 6) {
 				if (!GameInformation.helloWorldDefeated) {
 					text = "Prepare to Battle!";
