@@ -93,6 +93,8 @@ public class MainMenuScripts {
 		GameInformation.Security = statAllocationModule.pointsToAllocate[4];
 		GameInformation.MaxHealth = calculateMaxHealth ();
 		GameInformation.CurrentHealth = GameInformation.MaxHealth;
+		GameInformation.PlayerMoveOne = new Puts ();
+		GameInformation.PlayerMoveTwo = new ConsoleLog ();
 	}
 
 	private void SaveFinalSetup() {
