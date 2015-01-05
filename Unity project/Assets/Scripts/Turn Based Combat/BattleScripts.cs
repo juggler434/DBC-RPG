@@ -54,6 +54,11 @@ public class BattleScripts {
 		// DISPLAY BUTTONS OF THE ATTACKS
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
 			enemyCurrentHealth -= CalculateDamage(GameInformation.PlayerMoveOne);
+			if(enemyCurrentHealth > 0){
+				BattleGUI.currentState = BattleGUI.BattleStates.ENEMYCHOICE;
+			}else {
+				BattleGUI.currentState = BattleGUI.BattleStates.WIN;
+			}
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			enemyCurrentHealth -= CalculateDamage(GameInformation.PlayerMoveTwo);
@@ -93,8 +98,6 @@ public class BattleScripts {
 	//==================//
 
 	private int CalculateDamage(BaseAbility attack){
-		Debug.Log (attack.Stat);
-		Debug.Log (attack.AbilityPower);
 		return (attack.AbilityPower + attack.Stat) * Random.Range (8, 12);
 	}
 
