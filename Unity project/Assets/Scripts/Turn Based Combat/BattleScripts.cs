@@ -53,10 +53,10 @@ public class BattleScripts {
 
 	public void BattlePlayerChoice() {
 		// DISPLAY BUTTONS OF THE ATTACKS
-		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne)) {
+		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
 			RubyAttack();
 		}
-		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo)) {
+		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			JavaScriptAttack();
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
@@ -92,6 +92,10 @@ public class BattleScripts {
 	//==================//
 	// HELPER FUNCTIONS //
 	//==================//
+
+	private int CalculateDamage(BaseAbility attack){
+		return (attack.AbilityPower + attack.Stat) * Random.Range (8, 12);
+	}
 
 	private void RubyAttack() {
 		if (BattleGUI.currentState == BattleGUI.BattleStates.PLAYERCHOICE) {
