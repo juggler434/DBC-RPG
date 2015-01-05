@@ -62,6 +62,11 @@ public class BattleScripts {
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			enemyCurrentHealth -= CalculateDamage(GameInformation.PlayerMoveTwo);
+			if(enemyCurrentHealth > 0){
+				BattleGUI.currentState = BattleGUI.BattleStates.ENEMYCHOICE;
+			}else {
+				BattleGUI.currentState = BattleGUI.BattleStates.WIN;
+			}
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
