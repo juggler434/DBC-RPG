@@ -49,8 +49,24 @@ public class BattleGUI : MonoBehaviour {
 		ToggleExplosion();
 		yield return new WaitForSeconds(0.5f);
 		ToggleExplosion();
+
 	}
 
+	private IEnumerator PlayerAttack(){
+		BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+		StartCoroutine (Wait ());
+		yield return new WaitForSeconds (1);
+	}
+
+	private IEnumerator EnemyRubyAttack(){
+		BattleStateMachine.battleScripts.RubyAttack ();
+		yield return new WaitForSeconds (1);
+	}
+
+	private IEnumerator SwitchStates(){
+		yield return new WaitForSeconds (1.5f);
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+		}
 
 
 	public void BattleMainItems() {
@@ -62,19 +78,21 @@ public class BattleGUI : MonoBehaviour {
 		// DISPLAY BUTTONS OF THE ATTACKS
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveOne.AbilityName;
 			StartCoroutine(Wait());
 
 			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+				StartCoroutine(SwitchStates());
 			}else {
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
 			}
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
+			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveTwo.AbilityName;
 			StartCoroutine(Wait ());
 			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+				StartCoroutine(SwitchStates());
 			}else {
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
 			}
@@ -90,12 +108,12 @@ public class BattleGUI : MonoBehaviour {
 		
 		if (Random.Range (0,2) == 1) {
 			StartCoroutine(playerHitWait());
-			BattleStateMachine.battleScripts.RubyAttack();
+			BattleStateMachine.battleScripts.RubyAttack ();
 			BattleGUI.battleLog = "Hello World Attacks you with wefwef";
 	
 		} else {
 			StartCoroutine(playerHitWait());
-			BattleStateMachine.battleScripts.JavaScriptAttack();
+			BattleStateMachine.battleScripts.RubyAttack ();
 			BattleGUI.battleLog = "Hello World Attacks you with wegewg";
 
 
