@@ -8,6 +8,8 @@ public class BattleStateMachine : MonoBehaviour {
 	public Slider enemyHealthSlider;
 	public Text playerHealthAmounts;
 	public Text enemyHealthAmounts;
+	public Text playerName;
+	public Text enemyName;
 	// STATE MACHINE
 	public enum BattleStates {
 		START,
@@ -29,7 +31,8 @@ public class BattleStateMachine : MonoBehaviour {
 //		battleScripts.InitializeEnemy();
 
 		currentState = BattleStates.START;
-	
+		playerName.text = GameInformation.PlayerName + " Health";
+		enemyName.text = "Hello World Health";
 	}
 	
 	// Update is called once per frame
@@ -49,6 +52,9 @@ public class BattleStateMachine : MonoBehaviour {
 		case(BattleStates.LOSE):
 			break;
 		case(BattleStates.WIN):
+			GameInformation.helloWorldDefeated = true;
+			Application.LoadLevel("Phase0");
+
 			break;
 		}
 		playerHealthSlider.value = battleScripts.playerCurrentHealth;

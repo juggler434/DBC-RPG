@@ -68,8 +68,10 @@ public class BattleScripts {
 
 		if (Random.Range (0,2) == 1) {
 			RubyAttack();
+			BattleGUI.battleLog = "Hello World Attacks you with Hello World";
 		} else {
 			JavaScriptAttack();
+			BattleGUI.battleLog = "Hello World Attacks you with World World";
 		}
 		// DECIDE (RANDOMLY FOR NOW) WHICH ATTACK TO PERFORM AND FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE PLAYER HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO LOSE
@@ -78,7 +80,6 @@ public class BattleScripts {
 	public void BattleWin() {
 //		battleLog = "You Won!";
 		GameInformation.helloWorldDefeated = true;
-		Debug.Log (GameInformation.helloWorldDefeated);
 		Application.LoadLevel("Phase0");
 	}
 
@@ -95,19 +96,19 @@ public class BattleScripts {
 		return (attack.AbilityPower + attack.Stat) * Random.Range (8, 12);
 	}
 
-	private void RubyAttack() {
-		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
-			// CALCULATE DAMAGE AND SUBTRACT HP
-			int calcDamage = GameInformation.Ruby * Random.Range (8,12);
-			enemyCurrentHealth -= calcDamage;
-			// IF THE ENEMY HEALTH IS 0, WIN, OTHERWISE, ENEMYCHOICE
-			if (enemyCurrentHealth > 0) {
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
-			} else {
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
-			}
-		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
-			// CALCULATE DAMAGE AND SUBTRACT HP
+	public void RubyAttack() {
+//		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
+//			// CALCULATE DAMAGE AND SUBTRACT HP
+//			int calcDamage = GameInformation.Ruby * Random.Range (8,12);
+//			enemyCurrentHealth -= calcDamage;
+//			// IF THE ENEMY HEALTH IS 0, WIN, OTHERWISE, ENEMYCHOICE
+//			if (enemyCurrentHealth > 0) {
+//				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+//			} else {
+//				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+//			}
+//		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
+//			// CALCULATE DAMAGE AND SUBTRACT HP
 			int calcDamage = enemy.Ruby * Random.Range (8,12);
 			playerCurrentHealth -= calcDamage;
 			// IF THE PLAYER HEALTH IS 0, LOSE, OTHERWISE, PLAYERCHOICE
@@ -116,10 +117,10 @@ public class BattleScripts {
 			} else {
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.LOSE;
 			}
-		} 
+//		} 
 	}
 
-	private void JavaScriptAttack() {
+	public void JavaScriptAttack() {
 		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
 			// CALCULATE DAMAGE AND SUBTRACT HP
 			int calcDamage = GameInformation.JavaScript * Random.Range (7,13);

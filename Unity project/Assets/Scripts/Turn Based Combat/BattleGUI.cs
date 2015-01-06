@@ -4,20 +4,23 @@ using System.Collections;
 
 public class BattleGUI : MonoBehaviour {
 
-	private string battleLog = "Prepare for Battle";
+	public static string battleLog = "Prepare for Battle";
 	private BattleScripts battleScripts = new BattleScripts();
 	public RawImage explosion; 
+	public Image red;
 
-	public void ToggleExplosionOn(){
-		explosion.enabled = explosion.enabled;
-		}
+	public void TogglePlayerHit(){
+		red.enabled = !red.enabled;
+	}
 
-	public void ToggleExplosionOff(){
+	public void ToggleExplosion(){
 		explosion.enabled = !explosion.enabled;
 	}
-	
+
+
 	void Start(){
-		ToggleExplosionOff ();
+		ToggleExplosion ();
+		TogglePlayerHit ();
 	}
 
 	void Update(){
@@ -27,17 +30,25 @@ public class BattleGUI : MonoBehaviour {
 	void OnGUI(){
 		BattleMainItems ();
 		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
-			BattlePlayerChoice ();
-		}else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE){
-			BattleStateMachine.battleScripts.BattleEnemyChoice ();
+				BattlePlayerChoice ();
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
+			BattleEnemyChoice ();
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.WIN) {
+			battleLog = "You have Won";				
 		}
 
 	}
 
+	private IEnumerator playerHitWait(){
+		TogglePlayerHit ();
+		yield return new WaitForSeconds (0.5f);
+		TogglePlayerHit ();
+		}
+
 	private IEnumerator Wait(){
-		ToggleExplosionOff();
-		yield return new WaitForSeconds(2);
-		ToggleExplosionOff();
+		ToggleExplosion();
+		yield return new WaitForSeconds(0.5f);
+		ToggleExplosion();
 	}
 
 
@@ -50,13 +61,9 @@ public class BattleGUI : MonoBehaviour {
 	public void BattlePlayerChoice() {
 		// DISPLAY BUTTONS OF THE ATTACKS
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
-//			battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
-
-//			ToggleExplosionOn();
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
 			StartCoroutine(Wait());
-//			System.Threading.Thread.Sleep(1000);
-//			ToggleExplosionOff();
+
 			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
 			}else {
@@ -65,6 +72,7 @@ public class BattleGUI : MonoBehaviour {
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
+			StartCoroutine(Wait ());
 			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
 			}else {
@@ -73,6 +81,27 @@ public class BattleGUI : MonoBehaviour {
 		}
 		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
 		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
+	}
+
+	public void BattleEnemyChoice() {
+		// DISPLAY NON-CLICKABLE BUTTONS OF THE ATTACKS
+		GUI.Button(new Rect(Screen.width-250,200,150,50), "Strength Attack");
+		GUI.Button(new Rect(Screen.width-250,260,150,50), "Intellect Attack");
+		
+		if (Random.Range (0,2) == 1) {
+			StartCoroutine(playerHitWait());
+			BattleStateMachine.battleScripts.RubyAttack();
+			BattleGUI.battleLog = "Hello World Attacks you with wefwef";
+	
+		} else {
+			StartCoroutine(playerHitWait());
+			BattleStateMachine.battleScripts.JavaScriptAttack();
+			BattleGUI.battleLog = "Hello World Attacks you with wegewg";
+
+
+		}
+		// DECIDE (RANDOMLY FOR NOW) WHICH ATTACK TO PERFORM AND FIRE THE CORRESPONDING ATTACK FUNCTION
+		// IF THE PLAYER HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO LOSE
 	}
 
 }
