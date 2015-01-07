@@ -84,7 +84,7 @@ public class MainMenuScripts {
 		}
 	}
 
-	private void SaveStats() {
+	public void SaveStats() {
 		// SAVE ALL THE STATS AFTER THE ALLOCATION
 		GameInformation.Ruby = statAllocationModule.pointsToAllocate[0];
 		GameInformation.JavaScript = statAllocationModule.pointsToAllocate[1];
@@ -93,6 +93,8 @@ public class MainMenuScripts {
 		GameInformation.Security = statAllocationModule.pointsToAllocate[4];
 		GameInformation.MaxHealth = calculateMaxHealth ();
 		GameInformation.CurrentHealth = GameInformation.MaxHealth;
+		GameInformation.PlayerMoveOne = new Puts ();
+		GameInformation.PlayerMoveTwo = new ConsoleLog ();
 	}
 
 	private void SaveFinalSetup() {

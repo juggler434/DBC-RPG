@@ -5,7 +5,6 @@ public class ProximityTest : MonoBehaviour {
 
 	// INITIALIZE EMPTY VARIABLES
 	private GameObject player;
-	private Color initialColor;
 
 	public bool displayText;
 	public string text = "Greetings, I'm a vase";
@@ -14,7 +13,6 @@ public class ProximityTest : MonoBehaviour {
 	// FIND THE OBJECT WITH THE NAME PLAYER AND STORE THE INITIAL COLOR OF THE VASE
 	void Start () {
 		player = GameObject.FindWithTag("Player");
-		initialColor = gameObject.renderer.material.color;
 	}
 
 	// IF THE OBJECTS ARE CLOSE AND WE PRESS M, WE START THE DIALOGUE.
@@ -24,9 +22,9 @@ public class ProximityTest : MonoBehaviour {
 
 			if (dialogCounter == 2) {
 				displayText = true;
-				text = "Yes I'm a vase";
+				text = "Hello, My name is Maria and I will be leading you through DBC-RPG Phase 0!";
 			} else if (dialogCounter == 4) {
-				text = "Fuck vases";
+				text = "When you defeat me, you will be allowed to move on to Phase 0.";
 			} else if (dialogCounter == 6) {
 				if (!GameInformation.helloWorldDefeated) {
 					text = "Prepare to Battle!";

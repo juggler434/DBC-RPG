@@ -4,76 +4,123 @@ using System.Collections;
 
 public class BattleGUI : MonoBehaviour {
 
-	public Slider playerHealthSlider;
-	public Slider enemyHealthSlider;
-	public Text playerHealthAmounts;
-	public Text enemyHealthAmounts;
-
-	// STATE MACHINE
-	public enum BattleStates {
-		START,
-		PLAYERCHOICE,
-		ENEMYCHOICE,
-		CALCDAMAGE,
-		LOSE,
-		WIN
-	}
-
-	public static BattleStates currentState;
+	public static string battleLog = "Prepare for Battle";
 	private BattleScripts battleScripts = new BattleScripts();
+	public RawImage explosion; 
+	public Image red;
 
-	void Start () {
-		// INITIALIZE THE ENEMY WITH THE STATS
-		battleScripts.InitializeEnemy();
+	private int battleCounter = 0;
 
-		currentState = BattleStates.START;
-	
+	public void TogglePlayerHit(){
+		red.enabled = !red.enabled;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		switch(currentState){
-		case(BattleStates.START):
-			battleScripts.BattleStart();
-			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
-			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
-			break;
-		case(BattleStates.PLAYERCHOICE):
-			break;
-		case(BattleStates.ENEMYCHOICE):
-			break;
-		case(BattleStates.CALCDAMAGE):
-			break;
-		case(BattleStates.LOSE):
-			break;
-		case(BattleStates.WIN):
-			break;
+
+	public void ToggleExplosion(){
+		explosion.enabled = !explosion.enabled;
+	}
+
+
+	void Start(){
+		ToggleExplosion ();
+		TogglePlayerHit ();
+	}
+
+	void OnGUI(){
+		BattleMainItems ();
+		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
+			BattlePlayerChoice ();
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
+			BattleEnemyChoice ();
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.WIN) {
+			battleLog = "You won!";	
+			GameInformation.helloWorldDefeated = true;
+			Application.LoadLevel("Phase0");
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.LOSE) {
+			battleLog = "You lost!";					
 		}
-		playerHealthSlider.value = battleScripts.playerCurrentHealth;
-		enemyHealthSlider.value = battleScripts.enemyCurrentHealth;
-		playerHealthAmounts.text = battleScripts.playerCurrentHealth.ToString () + "/" + battleScripts.playerMaxHealth.ToString ();
-		enemyHealthAmounts.text = battleScripts.enemyCurrentHealth.ToString () + "/" + battleScripts.enemyMaxHealth.ToString ();
-		
 
 	}
 
-	void OnGUI() {
-		// DISPLAY ITEMS THAT WILL BE FIXED DURING THE BATTLE
-		battleScripts.BattleMainItems();
+	private IEnumerator playerHitWait(){
+		TogglePlayerHit ();
+		yield return new WaitForSeconds (0.5f);
+		TogglePlayerHit ();
+	}
 
-		// DISPLAY CUSTOM ITEMS THAT WILL CHANGE DEPENDING ON THE BATTLE STATE
-		if (currentState == BattleStates.START) {
-			battleScripts.BattleStart();
-		} else if (currentState == BattleStates.PLAYERCHOICE) {
-			battleScripts.BattlePlayerChoice();
-		} else if (currentState == BattleStates.ENEMYCHOICE) {
-			battleScripts.BattleEnemyChoice();
-		} else if (currentState == BattleStates.CALCDAMAGE) {
+	private IEnumerator DisplayExplosion(){
+		ToggleExplosion();
+		yield return new WaitForSeconds(0.5f);
+		ToggleExplosion();
 
-		} else if (currentState == BattleStates.LOSE) {
-			battleScripts.BattleLose();
-		} else if (currentState == BattleStates.WIN) {
-			battleScripts.BattleWin();
+	}
+
+	private IEnumerator SwitchStates(){
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.WAIT;
+		yield return new WaitForSeconds (1.0f);
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+	}
+
+	private IEnumerator SwitchStatesToPlayer(){
+		yield return new WaitForSeconds (1.0f);
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.PLAYERCHOICE;
+	}
+
+
+	public void BattleMainItems() {
+		// LOG BOX
+		GUI.Box (new Rect(10,Screen.height-210,Screen.width-20,200), battleLog);
+
+	}
+	public void BattlePlayerChoice() {
+
+		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
+			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveOne.AbilityName;
+			StartCoroutine(DisplayExplosion());
+
+			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+				StartCoroutine(SwitchStates());
+			} else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+			}
+		}
+		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
+			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
+			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveTwo.AbilityName;
+			StartCoroutine(DisplayExplosion ());
+
+			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+				StartCoroutine(SwitchStates());
+			} else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+			}
+		}
+
+		battleCounter = 0;
+	}
+
+	public void BattleEnemyChoice() {
+
+		if (battleCounter == 0) {
+
+			if (Random.Range (0,2) == 1) {
+				StartCoroutine(playerHitWait());
+				BattleStateMachine.battleScripts.RubyAttack ();
+				BattleGUI.battleLog = "Hello World Attacks you with Ruby Attack";
+			} else {
+				StartCoroutine(playerHitWait());
+				BattleStateMachine.battleScripts.JavaScriptAttack ();
+				BattleGUI.battleLog = "Hello World Attacks you with Javascript Attack";	
+			}
+
+			if (BattleStateMachine.battleScripts.playerCurrentHealth > 0){
+				StartCoroutine(SwitchStatesToPlayer());
+			} else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.LOSE;
+			}
+
+			battleCounter = 1;
 		}
 	}
+
 }
