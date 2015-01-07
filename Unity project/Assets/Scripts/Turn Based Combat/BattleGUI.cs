@@ -8,9 +8,26 @@ public class BattleGUI : MonoBehaviour {
 	private BattleScripts battleScripts = new BattleScripts();
 	public RawImage explosion; 
 	public Image red;
+	public Text playerAttack;
+	public Text enemyAttack;
+	public Text playerMove1;
+	public Text playerMove2;
+	public Text playerMove3;
 
 	private int battleCounter = 0;
 
+	public void AttackMove1(){
+		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+	}
+
+
+	public void AttackMove2(){
+		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveTwo);
+	}
+
+	public void AttackMove3(){
+		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveThree);
+	}
 	public void TogglePlayerHit(){
 		red.enabled = !red.enabled;
 	}
@@ -23,6 +40,10 @@ public class BattleGUI : MonoBehaviour {
 	void Start(){
 		ToggleExplosion ();
 		TogglePlayerHit ();
+		playerMove1.text = GameInformation.PlayerMoveOne.AbilityName;
+		playerMove2.text = GameInformation.PlayerMoveTwo.AbilityName;
+		playerMove3.text = GameInformation.PlayerMoveThree.AbilityName;
+		
 	}
 
 	void OnGUI(){
