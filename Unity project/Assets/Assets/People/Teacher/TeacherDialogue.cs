@@ -10,6 +10,8 @@ public class TeacherDialogue : MonoBehaviour {
 	public string text;
 	public int dialogCounter = 0;
 
+	private LevelingScripts levelingScripts = new LevelingScripts();
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag("Player");
@@ -37,7 +39,9 @@ public class TeacherDialogue : MonoBehaviour {
 
 			if (Phase1Information.cupCollected == true && Phase1Information.bookCollected == true && Phase1Information.laptopCollected == true) {
 				displayText = true;
-				text = "Congrats! You collected all the objects! Now you are ready to fight me.";
+				text = "Congrats! You collected all the objects! You earned 150 XP!";
+				levelingScripts.AddExperience(150);
+				Debug.Log (GameInformation.CurrentXP);
 			}
 			
 		}
