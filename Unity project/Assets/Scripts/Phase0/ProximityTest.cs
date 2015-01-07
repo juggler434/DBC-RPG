@@ -5,7 +5,6 @@ public class ProximityTest : MonoBehaviour {
 
 	// INITIALIZE EMPTY VARIABLES
 	private GameObject player;
-	private Color initialColor;
 
 	public bool displayText;
 	public string text = "Greetings, I'm a vase";
@@ -14,7 +13,6 @@ public class ProximityTest : MonoBehaviour {
 	// FIND THE OBJECT WITH THE NAME PLAYER AND STORE THE INITIAL COLOR OF THE VASE
 	void Start () {
 		player = GameObject.FindWithTag("Player");
-		initialColor = gameObject.renderer.material.color;
 	}
 
 	// IF THE OBJECTS ARE CLOSE AND WE PRESS M, WE START THE DIALOGUE.
