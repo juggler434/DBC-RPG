@@ -15,13 +15,10 @@ public class BattleStateMachine : MonoBehaviour {
 		START,
 		PLAYERCHOICE,
 		ENEMYCHOICE,
-		CALCDAMAGE,
+		WAIT,
 		LOSE,
 		WIN
 	}
-
-
-
 
 	public static BattleStates currentState;
 	public static BattleScripts battleScripts = new BattleScripts();
@@ -47,14 +44,11 @@ public class BattleStateMachine : MonoBehaviour {
 			break;
 		case(BattleStates.ENEMYCHOICE):
 			break;
-		case(BattleStates.CALCDAMAGE):
+		case(BattleStates.WAIT):
 			break;
 		case(BattleStates.LOSE):
 			break;
 		case(BattleStates.WIN):
-			GameInformation.helloWorldDefeated = true;
-			Application.LoadLevel("Phase0");
-
 			break;
 		}
 		playerHealthSlider.value = battleScripts.playerCurrentHealth;

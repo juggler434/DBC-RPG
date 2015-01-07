@@ -9,6 +9,8 @@ public class BattleGUI : MonoBehaviour {
 	public RawImage explosion; 
 	public Image red;
 
+	private int battleCounter = 0;
+
 	public void TogglePlayerHit(){
 		red.enabled = !red.enabled;
 	}
@@ -23,18 +25,18 @@ public class BattleGUI : MonoBehaviour {
 		TogglePlayerHit ();
 	}
 
-	void Update(){
-
-	}
-
 	void OnGUI(){
 		BattleMainItems ();
 		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
-				BattlePlayerChoice ();
+			BattlePlayerChoice ();
 		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
 			BattleEnemyChoice ();
 		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.WIN) {
-			battleLog = "You have Won";				
+			battleLog = "You won!";	
+			GameInformation.helloWorldDefeated = true;
+			Application.LoadLevel("Phase0");
+		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.LOSE) {
+			battleLog = "You lost!";					
 		}
 
 	}
@@ -43,30 +45,25 @@ public class BattleGUI : MonoBehaviour {
 		TogglePlayerHit ();
 		yield return new WaitForSeconds (0.5f);
 		TogglePlayerHit ();
-		}
+	}
 
-	private IEnumerator Wait(){
+	private IEnumerator DisplayExplosion(){
 		ToggleExplosion();
 		yield return new WaitForSeconds(0.5f);
 		ToggleExplosion();
 
 	}
 
-	private IEnumerator PlayerAttack(){
-		BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
-		StartCoroutine (Wait ());
-		yield return new WaitForSeconds (1);
-	}
-
-	private IEnumerator EnemyRubyAttack(){
-		BattleStateMachine.battleScripts.RubyAttack ();
-		yield return new WaitForSeconds (1);
-	}
-
 	private IEnumerator SwitchStates(){
-		yield return new WaitForSeconds (1.5f);
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.WAIT;
+		yield return new WaitForSeconds (1.0f);
 		BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
-		}
+	}
+
+	private IEnumerator SwitchStatesToPlayer(){
+		yield return new WaitForSeconds (1.0f);
+		BattleStateMachine.currentState = BattleStateMachine.BattleStates.PLAYERCHOICE;
+	}
 
 
 	public void BattleMainItems() {
@@ -75,51 +72,55 @@ public class BattleGUI : MonoBehaviour {
 
 	}
 	public void BattlePlayerChoice() {
-		// DISPLAY BUTTONS OF THE ATTACKS
+
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
 			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveOne.AbilityName;
-			StartCoroutine(Wait());
+			StartCoroutine(DisplayExplosion());
 
-			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
 				StartCoroutine(SwitchStates());
-			}else {
+			} else {
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
 			}
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
 			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
 			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveTwo.AbilityName;
-			StartCoroutine(Wait ());
-			if(BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+			StartCoroutine(DisplayExplosion ());
+
+			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
 				StartCoroutine(SwitchStates());
-			}else {
+			} else {
 				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
 			}
 		}
-		// IF THE PLAYER CLICKS ON ONE BUTTON, FIRE THE CORRESPONDING ATTACK FUNCTION
-		// IF THE ENEMY HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO WIN
+
+		battleCounter = 0;
 	}
 
 	public void BattleEnemyChoice() {
-		// DISPLAY NON-CLICKABLE BUTTONS OF THE ATTACKS
-		GUI.Button(new Rect(Screen.width-250,200,150,50), "Strength Attack");
-		GUI.Button(new Rect(Screen.width-250,260,150,50), "Intellect Attack");
-		
-		if (Random.Range (0,2) == 1) {
-			StartCoroutine(playerHitWait());
-			BattleStateMachine.battleScripts.RubyAttack ();
-			BattleGUI.battleLog = "Hello World Attacks you with wefwef";
-	
-		} else {
-			StartCoroutine(playerHitWait());
-			BattleStateMachine.battleScripts.RubyAttack ();
-			BattleGUI.battleLog = "Hello World Attacks you with wegewg";
 
+		if (battleCounter == 0) {
 
+			if (Random.Range (0,2) == 1) {
+				StartCoroutine(playerHitWait());
+				BattleStateMachine.battleScripts.RubyAttack ();
+				BattleGUI.battleLog = "Hello World Attacks you with Ruby Attack";
+			} else {
+				StartCoroutine(playerHitWait());
+				BattleStateMachine.battleScripts.JavaScriptAttack ();
+				BattleGUI.battleLog = "Hello World Attacks you with Javascript Attack";	
+			}
+
+			if (BattleStateMachine.battleScripts.playerCurrentHealth > 0){
+				StartCoroutine(SwitchStatesToPlayer());
+			} else {
+				BattleStateMachine.currentState = BattleStateMachine.BattleStates.LOSE;
+			}
+
+			battleCounter = 1;
 		}
-		// DECIDE (RANDOMLY FOR NOW) WHICH ATTACK TO PERFORM AND FIRE THE CORRESPONDING ATTACK FUNCTION
-		// IF THE PLAYER HAS ENOUGH HP THEN SWITCH STATE TO ENEMY CHOICE, ELSE SWITCH TO LOSE
 	}
 
 }
