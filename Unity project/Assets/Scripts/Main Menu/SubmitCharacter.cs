@@ -17,13 +17,16 @@ public class SubmitCharacter : MonoBehaviour {
 	}
 
 	private int calcHealth() {
-		return GameInformation.Security * 10;
+		return GameInformation.Security * 100;
 		}
 
 	public void sumbit() {
 		GameInformation.MaxHealth = calcHealth();
+		GameInformation.CurrentHealth = GameInformation.MaxHealth;
 		GameInformation.PlayerName = name.text;
 		Application.LoadLevel ("Phase0");
-
+		GameInformation.PlayerLevel = 1;
+		GameInformation.PlayerMoveOne = new Puts ();
+		GameInformation.PlayerMoveTwo = new ConsoleLog ();
 		}
 }
