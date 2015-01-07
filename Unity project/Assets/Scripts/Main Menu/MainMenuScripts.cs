@@ -84,7 +84,7 @@ public class MainMenuScripts {
 		}
 	}
 
-	private void SaveStats() {
+	public void SaveStats() {
 		// SAVE ALL THE STATS AFTER THE ALLOCATION
 		GameInformation.Ruby = statAllocationModule.pointsToAllocate[0];
 		GameInformation.JavaScript = statAllocationModule.pointsToAllocate[1];
