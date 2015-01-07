@@ -15,14 +15,17 @@ public class ClassSelection : MonoBehaviour {
 
 	public void ChooseFrontEnd(){
 		GameInformation.PlayerClass = new FrontEndClass ();
+		GameInformation.PointsToAllocate = 5;
 	}
 
 	public void ChooseBackEnd(){
 		GameInformation.PlayerClass = new BackEndClass ();
+		GameInformation.PointsToAllocate = 5;
 	}
 
 	public void ChooseFullStack(){
 		GameInformation.PlayerClass = new FullStackClass ();
+		GameInformation.PointsToAllocate = 5;
 	}
 
 	public void SetBaseStats(){

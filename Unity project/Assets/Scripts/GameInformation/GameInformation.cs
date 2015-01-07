@@ -19,6 +19,7 @@ public class GameInformation : MonoBehaviour {
 	public Slider healthSlider;
 	public Text characterLevel;
 	public Text hpAmounts;
+	public static int PointsToAllocate = 5;
 
 	// CURRENT POSITION
 	public static Vector3 PlayerPosition { get; set; }
