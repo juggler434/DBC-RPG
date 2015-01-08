@@ -8,6 +8,6 @@ public class FadeOutScript : MonoBehaviour {
 	}
 
 	void FadeOut () {
-		AutoFade.LoadLevel ("Phase1", 3, 3, Color.white);
+		AutoFade.LoadLevel ("Phase1", 2, 2, Color.white);
 	}
 }
