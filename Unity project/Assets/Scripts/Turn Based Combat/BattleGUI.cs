@@ -14,6 +14,10 @@ public class BattleGUI : MonoBehaviour {
 	public Text playerMove2;
 	public Text playerMove3;
 	public Text battleMoveScreen;
+	public Button playerMove1Button;
+	public Button playerMove2Button;
+	public Button playerMove3Button;
+	
 
 	//Battle state machine
 	public Slider playerHealthSlider;
@@ -35,6 +39,20 @@ public class BattleGUI : MonoBehaviour {
 	
 	public static BattleStates currentState;
 
+	public void turnButtonsOn(){
+		playerMove1Button.interactable = true;
+		playerMove2Button.interactable = true;
+		playerMove3Button.interactable = true;
+
+	}
+
+	public void turnButtonsOff(){
+		playerMove1Button.interactable = false;
+		playerMove2Button.interactable = false;
+		playerMove3Button.interactable = false;
+	
+		
+	}
 
 
 
@@ -42,6 +60,8 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveOne);
 		battleCounter = 0;
+		turnButtonsOff();
+		PlayerSwitchState();
 	}
 
 
@@ -49,6 +69,8 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage (GameInformation.PlayerMoveTwo);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveTwo);
 		battleCounter = 0;
+		turnButtonsOff();
+		PlayerSwitchState();
 		
 	}
 
@@ -56,6 +78,8 @@ public class BattleGUI : MonoBehaviour {
 		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage (GameInformation.PlayerMoveThree);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveThree);
 		battleCounter = 0;
+		turnButtonsOff();
+		PlayerSwitchState();
 		
 	}
 
@@ -82,6 +106,8 @@ public class BattleGUI : MonoBehaviour {
 	}
 
 
+
+
 	void Start(){
 		ToggleExplosion ();
 		TogglePlayerHit ();
@@ -102,19 +128,28 @@ public class BattleGUI : MonoBehaviour {
 	void Update () {
 		switch(currentState){
 		case(BattleStates.START):
+			turnButtonsOff();
 			battleScripts.BattleStart();
 			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
 			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
+
 			break;
 		case(BattleStates.PLAYERCHOICE):
+			turnButtonsOn();
 			break;
 		case(BattleStates.ENEMYCHOICE):
+			turnButtonsOff();
+			BattleEnemyChoice();
 			break;
 		case(BattleStates.WAIT):
 			break;
 		case(BattleStates.LOSE):
+			battleMoveScreen.text = "You Lost";
 			break;
 		case(BattleStates.WIN):
+			battleMoveScreen.text = "You may proceed!";
+			GameInformation.helloWorldDefeated = true;
+			Application.LoadLevel("Phase0");
 			break;
 		}
 		playerHealthSlider.value = battleScripts.playerCurrentHealth;
@@ -135,21 +170,21 @@ public class BattleGUI : MonoBehaviour {
 
 
 
-	void OnGUI(){
-		BattleMainItems ();
-		if (currentState == BattleStates.PLAYERCHOICE) {
-			BattlePlayerChoice ();
-		} else if (currentState == BattleStates.ENEMYCHOICE) {
-			BattleEnemyChoice ();
-		} else if (currentState == BattleStates.WIN) {
-			battleLog = "You won!";	
-			GameInformation.helloWorldDefeated = true;
-			Application.LoadLevel("Phase0");
-		} else if (currentState == BattleStates.LOSE) {
-			battleLog = "You lost!";					
-		}
-
-	}
+//	void OnGUI(){
+//		BattleMainItems ();
+//		if (currentState == BattleStates.PLAYERCHOICE) {
+//			BattlePlayerChoice ();
+//		} else if (currentState == BattleStates.ENEMYCHOICE) {
+//			BattleEnemyChoice ();
+//		} else if (currentState == BattleStates.WIN) {
+//			battleLog = "You won!";	
+//			GameInformation.helloWorldDefeated = true;
+//			Application.LoadLevel("Phase0");
+//		} else if (currentState == BattleStates.LOSE) {
+//			battleLog = "You lost!";					
+//		}
+//
+//	}
 
 	private IEnumerator playerHitWait(){
 		TogglePlayerHit ();

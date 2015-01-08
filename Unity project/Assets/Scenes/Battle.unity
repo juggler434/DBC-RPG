@@ -1351,7 +1351,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1395874924}
         m_MethodName: AttackMove2
         m_Mode: 1
@@ -1562,12 +1562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27033df39d9484fd1a92c473fc48fc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthSlider: {fileID: 100738102}
-  enemyHealthSlider: {fileID: 1162003905}
-  playerHealthAmounts: {fileID: 1789977820}
-  enemyHealthAmounts: {fileID: 149130728}
-  playerName: {fileID: 492724083}
-  enemyName: {fileID: 5268303}
 --- !u!114 &1395874924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,6 +1581,15 @@ MonoBehaviour:
   playerMove2: {fileID: 86558499}
   playerMove3: {fileID: 801480432}
   battleMoveScreen: {fileID: 2006705500}
+  playerMove1Button: {fileID: 1520056094}
+  playerMove2Button: {fileID: 1307090242}
+  playerMove3Button: {fileID: 1402057620}
+  playerHealthSlider: {fileID: 100738102}
+  enemyHealthSlider: {fileID: 1162003905}
+  playerHealthAmounts: {fileID: 1789977820}
+  enemyHealthAmounts: {fileID: 149130728}
+  playerName: {fileID: 492724083}
+  enemyName: {fileID: 5268303}
 --- !u!82 &1395874925
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1764,7 +1767,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1395874924}
         m_MethodName: AttackMove3
         m_Mode: 1
@@ -2031,7 +2034,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1395874924}
         m_MethodName: AttackMove1
         m_Mode: 1
