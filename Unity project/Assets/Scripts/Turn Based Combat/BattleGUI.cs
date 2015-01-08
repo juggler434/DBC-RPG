@@ -250,6 +250,7 @@ public class BattleGUI : MonoBehaviour {
 		if (battleCounter == 0) {
 			StartCoroutine(playerHitWait());
 			battleScripts.RubyAttack();
+			DisplayEnemyAttackInfo();
 
 
 //			if (Random.Range (0,2) == 1) {

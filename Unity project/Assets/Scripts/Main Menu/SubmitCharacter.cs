@@ -28,6 +28,16 @@ public class SubmitCharacter : MonoBehaviour {
 		GameInformation.PlayerLevel = 1;
 		GameInformation.PlayerMoveOne = new Puts ();
 		GameInformation.PlayerMoveTwo = new ConsoleLog ();
-		GameInformation.PlayerMoveThree = GameInformation.PlayerClass.SpecialAblity;
+		if (GameInformation.PlayerClass.CharacterClassName == "Front End Developer"){
+			GameInformation.PlayerMoveThree = new JavaLava();
+		} 
+
+		if (GameInformation.PlayerClass.CharacterClassName == "Back End Developer"){
+			GameInformation.PlayerMoveThree = new RailsGun();
+		}
+
+		if (GameInformation.PlayerClass.CharacterClassName == "Full Stack Developer"){
+			GameInformation.PlayerMoveThree = new RefactoBlaster();
+		}
 	}
 }
