@@ -31,9 +31,9 @@ public class BattleScripts {
 		// DECIDE WHO IS GOING FIRST
 		InitializeEnemy ();
 		if (GameInformation.KeyboardShortcuts >= enemy.KeyboardShortCuts) {
-			BattleStateMachine.currentState = BattleStateMachine.BattleStates.PLAYERCHOICE;
+			BattleGUI.currentState = BattleGUI.BattleStates.PLAYERCHOICE;
 		} else {
-			BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+			BattleGUI.currentState = BattleGUI.BattleStates.ENEMYCHOICE;
 		}
 	}
 

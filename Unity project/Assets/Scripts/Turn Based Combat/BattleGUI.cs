@@ -15,23 +15,48 @@ public class BattleGUI : MonoBehaviour {
 	public Text playerMove3;
 	public Text battleMoveScreen;
 
+	//Battle state machine
+	public Slider playerHealthSlider;
+	public Slider enemyHealthSlider;
+	public Text playerHealthAmounts;
+	public Text enemyHealthAmounts;
+	public Text playerName;
+	public Text enemyName;
+	public static int battleCounter;
+	// STATE MACHINE
+	public enum BattleStates {
+		START,
+		PLAYERCHOICE,
+		ENEMYCHOICE,
+		WAIT,
+		LOSE,
+		WIN
+	}
+	
+	public static BattleStates currentState;
 
-	private int battleCounter = 0;
+
+
 
 	public void AttackMove1(){
-		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveOne);
+		battleCounter = 0;
 	}
 
 
 	public void AttackMove2(){
-		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveTwo);
+		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage (GameInformation.PlayerMoveTwo);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveTwo);
+		battleCounter = 0;
+		
 	}
 
 	public void AttackMove3(){
-		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveThree);
+		battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage (GameInformation.PlayerMoveThree);
 		DisplayPlayerAttackInfo(GameInformation.PlayerMoveThree);
+		battleCounter = 0;
+		
 	}
 
 	public void ShowExplosions() {
@@ -48,7 +73,7 @@ public class BattleGUI : MonoBehaviour {
 
 
 
-	public void TogglePlayerHit(){
+	private void TogglePlayerHit(){
 		red.enabled = !red.enabled;
 	}
 
@@ -65,13 +90,46 @@ public class BattleGUI : MonoBehaviour {
 		playerMove1.text = GameInformation.PlayerMoveOne.AbilityName;
 		playerMove2.text = GameInformation.PlayerMoveTwo.AbilityName;
 		playerMove3.text = GameInformation.PlayerMoveThree.AbilityName;
+
+		// INITIALIZE THE ENEMY WITH THE STATS
+		//		battleScripts.InitializeEnemy();
+		
+		currentState = BattleStates.START;
+		playerName.text = GameInformation.PlayerName + " Health";
+		enemyName.text = "Hello World Health";
+	}
+
+	void Update () {
+		switch(currentState){
+		case(BattleStates.START):
+			battleScripts.BattleStart();
+			playerHealthSlider.maxValue = battleScripts.playerMaxHealth;
+			enemyHealthSlider.maxValue = battleScripts.enemyMaxHealth;
+			break;
+		case(BattleStates.PLAYERCHOICE):
+			break;
+		case(BattleStates.ENEMYCHOICE):
+			break;
+		case(BattleStates.WAIT):
+			break;
+		case(BattleStates.LOSE):
+			break;
+		case(BattleStates.WIN):
+			break;
+		}
+		playerHealthSlider.value = battleScripts.playerCurrentHealth;
+		enemyHealthSlider.value = battleScripts.enemyCurrentHealth;
+		playerHealthAmounts.text = battleScripts.playerCurrentHealth.ToString () + "/" + battleScripts.playerMaxHealth.ToString ();
+		enemyHealthAmounts.text = battleScripts.enemyCurrentHealth.ToString () + "/" + battleScripts.enemyMaxHealth.ToString ();
+		
+		
 	}
 
 	public void PlayerSwitchState(){
-		if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+		if (battleScripts.enemyCurrentHealth > 0){
 			StartCoroutine(SwitchStates());
 		} else {
-			BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+			currentState = BattleStates.WIN;
 		}
 	}
 
@@ -79,15 +137,15 @@ public class BattleGUI : MonoBehaviour {
 
 	void OnGUI(){
 		BattleMainItems ();
-		if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.PLAYERCHOICE) {
+		if (currentState == BattleStates.PLAYERCHOICE) {
 			BattlePlayerChoice ();
-		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.ENEMYCHOICE) {
+		} else if (currentState == BattleStates.ENEMYCHOICE) {
 			BattleEnemyChoice ();
-		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.WIN) {
+		} else if (currentState == BattleStates.WIN) {
 			battleLog = "You won!";	
 			GameInformation.helloWorldDefeated = true;
 			Application.LoadLevel("Phase0");
-		} else if (BattleStateMachine.currentState == BattleStateMachine.BattleStates.LOSE) {
+		} else if (currentState == BattleStates.LOSE) {
 			battleLog = "You lost!";					
 		}
 
@@ -107,14 +165,14 @@ public class BattleGUI : MonoBehaviour {
 	}
 
 	private IEnumerator SwitchStates(){
-		BattleStateMachine.currentState = BattleStateMachine.BattleStates.WAIT;
+		currentState = BattleStates.WAIT;
 		yield return new WaitForSeconds (1.0f);
-		BattleStateMachine.currentState = BattleStateMachine.BattleStates.ENEMYCHOICE;
+		currentState = BattleStates.ENEMYCHOICE;
 	}
 
 	private IEnumerator SwitchStatesToPlayer(){
 		yield return new WaitForSeconds (1.0f);
-		BattleStateMachine.currentState = BattleStateMachine.BattleStates.PLAYERCHOICE;
+		currentState = BattleStates.PLAYERCHOICE;
 	}
 
 
@@ -127,25 +185,25 @@ public class BattleGUI : MonoBehaviour {
 	public void BattlePlayerChoice() {
 
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
-			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+			battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
 			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveOne.AbilityName;
 			StartCoroutine(DisplayExplosion());
 
-			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+			if (battleScripts.enemyCurrentHealth > 0){
 				StartCoroutine(SwitchStates());
 			} else {
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+				currentState = BattleStates.WIN;
 			}
 		}
 		if (GUI.Button(new Rect(50,260,150,50), GameInformation.PlayerMoveTwo.AbilityName)) {
-			BattleStateMachine.battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
+			battleScripts.enemyCurrentHealth -= battleScripts.CalculateDamage(GameInformation.PlayerMoveTwo);
 			battleLog = "You attack Hello World with " + GameInformation.PlayerMoveTwo.AbilityName;
 			StartCoroutine(DisplayExplosion ());
 
-			if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+			if (battleScripts.enemyCurrentHealth > 0){
 				StartCoroutine(SwitchStates());
 			} else {
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+				currentState = BattleStates.WIN;
 			}
 		}
 
@@ -156,8 +214,7 @@ public class BattleGUI : MonoBehaviour {
 
 		if (battleCounter == 0) {
 			StartCoroutine(playerHitWait());
-			DisplayEnemyAttackInfo();
-			BattleStateMachine.battleScripts.RubyAttack();
+			battleScripts.RubyAttack();
 
 
 //			if (Random.Range (0,2) == 1) {
@@ -170,10 +227,10 @@ public class BattleGUI : MonoBehaviour {
 //				BattleGUI.battleLog = "Hello World Attacks you with Javascript Attack";	
 //			}
 //
-			if (BattleStateMachine.battleScripts.playerCurrentHealth > 0){
+			if (battleScripts.playerCurrentHealth > 0){
 				StartCoroutine(SwitchStatesToPlayer());
 			} else {
-				BattleStateMachine.currentState = BattleStateMachine.BattleStates.LOSE;
+				currentState = BattleStates.LOSE;
 			}
 
 			battleCounter = 1;
