@@ -35,7 +35,8 @@ public class ProximityTest : MonoBehaviour {
 				Time.timeScale = 1;
 				displayText = false;
 				if (!GameInformation.helloWorldDefeated) {
-					Application.LoadLevel("Battle");
+					AutoFade.LoadLevel("Battle",1,1,Color.white);
+//					Application.LoadLevel("Battle");
 				}
 			}
 

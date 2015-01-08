@@ -24,7 +24,10 @@ public class SubmitCharacter : MonoBehaviour {
 		GameInformation.MaxHealth = calcHealth();
 		GameInformation.CurrentHealth = GameInformation.MaxHealth;
 		GameInformation.PlayerName = name.text;
-		Application.LoadLevel ("Phase0");
+
+		AutoFade.LoadLevel ("Phase0", 2, 1, Color.white);
+//		Application.LoadLevel ("Phase0");
+
 		GameInformation.PlayerLevel = 1;
 		GameInformation.PlayerMoveOne = new Puts ();
 		GameInformation.PlayerMoveTwo = new ConsoleLog ();
