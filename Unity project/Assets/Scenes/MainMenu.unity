@@ -4877,7 +4877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 48d25f022ca056b479ede3ed9f5052dc, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 48d25f022ca056b479ede3ed9f5052dc, type: 2}
       propertyPath: m_LocalScale.z
@@ -5035,8 +5035,6 @@ GameObject:
   - 124: {fileID: 1247747710}
   - 92: {fileID: 1247747709}
   - 81: {fileID: 1247747708}
-  - 114: {fileID: 1247747713}
-  - 114: {fileID: 1247747714}
   - 114: {fileID: 1247747715}
   m_Layer: 0
   m_Name: Main Camera
@@ -5110,28 +5108,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2073693644}
   m_RootOrder: 1
---- !u!114 &1247747713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1247747707}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116af6c2bb7384300a5cbf36edfb0ab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1247747714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1247747707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6fd531ed3755475893ba941a19956f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1247747715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5143,7 +5119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e917eee95f64a7d898656a8f891c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMount: {fileID: 0}
+  currentMount: {fileID: 1247747712}
   speedFactor: .0500000007
   perspectiveCanvas: {fileID: 0}
 --- !u!1 &1257290033
