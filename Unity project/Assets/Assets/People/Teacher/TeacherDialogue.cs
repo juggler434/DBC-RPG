@@ -40,10 +40,10 @@ public class TeacherDialogue : MonoBehaviour {
 
 			if (!hasAlreadyAssignedXP && Phase1Information.cupCollected == true && Phase1Information.bookCollected == true && Phase1Information.laptopCollected == true) {
 				displayText = true;
-				text = "Congrats! You collected all the objects! You earned 150 XP!";
+				text = "Congrats! You collected all the objects! You earned 150 XP! Enough to level up! Go to your Pause Screen (P) to adjust your stats and go to the pairing stations after that.";
 				levelingScripts.AddExperience(150);
 				hasAlreadyAssignedXP = true;
-				Invoke ("setTextToFalse", 2.0f);
+				Invoke ("setTextToFalse", 3.0f);
 			}
 			
 		}
