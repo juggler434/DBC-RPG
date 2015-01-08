@@ -17,21 +17,21 @@ public class ProximityTest : MonoBehaviour {
 
 	// IF THE OBJECTS ARE CLOSE AND WE PRESS M, WE START THE DIALOGUE.
 	void OnGUI () {
-		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2.0f && Input.GetKeyUp (KeyCode.E)) {
+		if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 2.0f && Event.current.type == EventType.KeyUp && Event.current.keyCode == KeyCode.E) {
 			++dialogCounter;
 
-			if (dialogCounter == 2) {
+			if (dialogCounter == 1) {
 				displayText = true;
 				text = "Hello, My name is Maria and I will be leading you through DBC-RPG Phase 0!";
-			} else if (dialogCounter == 4) {
+			} else if (dialogCounter == 2) {
 				text = "When you defeat me, you will be allowed to move on to Phase 0.";
-			} else if (dialogCounter == 6) {
+			} else if (dialogCounter == 3) {
 				if (!GameInformation.helloWorldDefeated) {
 					text = "Prepare to Battle!";
 				} else {
 					text = "You already defeated me :(";
 				}
-			} else if (dialogCounter >= 8) {
+			} else if (dialogCounter >= 4) {
 				Time.timeScale = 1;
 				displayText = false;
 				if (!GameInformation.helloWorldDefeated) {
