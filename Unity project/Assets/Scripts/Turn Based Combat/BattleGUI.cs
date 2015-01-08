@@ -13,21 +13,41 @@ public class BattleGUI : MonoBehaviour {
 	public Text playerMove1;
 	public Text playerMove2;
 	public Text playerMove3;
+	public Text battleMoveScreen;
+
 
 	private int battleCounter = 0;
 
 	public void AttackMove1(){
 		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage(GameInformation.PlayerMoveOne);
+		DisplayPlayerAttackInfo(GameInformation.PlayerMoveOne);
 	}
 
 
 	public void AttackMove2(){
 		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveTwo);
+		DisplayPlayerAttackInfo(GameInformation.PlayerMoveTwo);
 	}
 
 	public void AttackMove3(){
 		BattleStateMachine.battleScripts.enemyCurrentHealth -= BattleStateMachine.battleScripts.CalculateDamage (GameInformation.PlayerMoveThree);
+		DisplayPlayerAttackInfo(GameInformation.PlayerMoveThree);
 	}
+
+	public void ShowExplosions() {
+		StartCoroutine (DisplayExplosion ());
+	}
+
+	public void DisplayPlayerAttackInfo(BaseAbility attack){
+		battleMoveScreen.text = "You attack with " + attack + "!" ;
+	}
+
+	public void DisplayEnemyAttackInfo(){
+		battleMoveScreen.text = "Hello World attacks!!!";
+	}
+
+
+
 	public void TogglePlayerHit(){
 		red.enabled = !red.enabled;
 	}
@@ -40,11 +60,22 @@ public class BattleGUI : MonoBehaviour {
 	void Start(){
 		ToggleExplosion ();
 		TogglePlayerHit ();
+		battleMoveScreen.text = "Attempt to print 'Hello World' to your console.";
+		
 		playerMove1.text = GameInformation.PlayerMoveOne.AbilityName;
 		playerMove2.text = GameInformation.PlayerMoveTwo.AbilityName;
 		playerMove3.text = GameInformation.PlayerMoveThree.AbilityName;
-		
 	}
+
+	public void PlayerSwitchState(){
+		if (BattleStateMachine.battleScripts.enemyCurrentHealth > 0){
+			StartCoroutine(SwitchStates());
+		} else {
+			BattleStateMachine.currentState = BattleStateMachine.BattleStates.WIN;
+		}
+	}
+
+
 
 	void OnGUI(){
 		BattleMainItems ();
@@ -89,9 +120,10 @@ public class BattleGUI : MonoBehaviour {
 
 	public void BattleMainItems() {
 		// LOG BOX
-		GUI.Box (new Rect(10,Screen.height-210,Screen.width-20,200), battleLog);
+//		GUI.Box (new Rect(10,Screen.height-210,Screen.width-20,200), battleLog);
 
 	}
+
 	public void BattlePlayerChoice() {
 
 		if (GUI.Button(new Rect(50,200,150,50), GameInformation.PlayerMoveOne.AbilityName)) {
@@ -123,17 +155,21 @@ public class BattleGUI : MonoBehaviour {
 	public void BattleEnemyChoice() {
 
 		if (battleCounter == 0) {
+			StartCoroutine(playerHitWait());
+			DisplayEnemyAttackInfo();
+			BattleStateMachine.battleScripts.RubyAttack();
 
-			if (Random.Range (0,2) == 1) {
-				StartCoroutine(playerHitWait());
-				BattleStateMachine.battleScripts.RubyAttack ();
-				BattleGUI.battleLog = "Hello World Attacks you with Ruby Attack";
-			} else {
-				StartCoroutine(playerHitWait());
-				BattleStateMachine.battleScripts.JavaScriptAttack ();
-				BattleGUI.battleLog = "Hello World Attacks you with Javascript Attack";	
-			}
 
+//			if (Random.Range (0,2) == 1) {
+//				StartCoroutine(playerHitWait());
+//				BattleStateMachine.battleScripts.RubyAttack ();
+//				BattleGUI.battleLog = "Hello World Attacks you with Ruby Attack";
+//			} else {
+//				StartCoroutine(playerHitWait());
+//				BattleStateMachine.battleScripts.JavaScriptAttack ();
+//				BattleGUI.battleLog = "Hello World Attacks you with Javascript Attack";	
+//			}
+//
 			if (BattleStateMachine.battleScripts.playerCurrentHealth > 0){
 				StartCoroutine(SwitchStatesToPlayer());
 			} else {
@@ -143,5 +179,7 @@ public class BattleGUI : MonoBehaviour {
 			battleCounter = 1;
 		}
 	}
+
+
 
 }
