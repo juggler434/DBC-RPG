@@ -37,6 +37,8 @@ public class BattleGUI : MonoBehaviour {
 		LOSE,
 		WIN
 	}
+
+	public AudioClip punchSound;
 	
 	public static BattleStates currentState;
 
@@ -283,6 +285,10 @@ public class BattleGUI : MonoBehaviour {
 
 			battleCounter = 1;
 		}
+	}
+
+	public void PlaySound () {
+		audio.Play();
 	}
 
 
