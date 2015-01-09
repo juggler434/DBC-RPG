@@ -43,7 +43,7 @@ public class buttonScript : MonoBehaviour
 	void Update()
 	{
 		//When the user hits the spacebar, we start lerping
-		if (Vector3.Distance(player.transform.position, transform.position) < 2.0f && Input.GetKeyUp (KeyCode.E))
+		if (Input.GetKeyUp (KeyCode.E))
 		{
 			StartLerping();
 		}
