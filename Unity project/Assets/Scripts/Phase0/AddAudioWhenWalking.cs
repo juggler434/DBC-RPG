@@ -4,7 +4,6 @@ using System.Collections;
 public class AddAudioWhenWalking : MonoBehaviour {
 
 	public AudioClip walkSound;
-	private bool isWalking = false;
 
 	void Start() {
 		  

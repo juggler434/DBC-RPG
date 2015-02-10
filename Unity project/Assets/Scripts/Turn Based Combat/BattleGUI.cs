@@ -37,6 +37,8 @@ public class BattleGUI : MonoBehaviour {
 		LOSE,
 		WIN
 	}
+
+	public AudioClip punchSound;
 	
 	public static BattleStates currentState;
 
@@ -118,7 +120,7 @@ public class BattleGUI : MonoBehaviour {
 		playerEnergySlider.maxValue = battleScripts.playerMaxEnergy;
 		ToggleExplosion ();
 		TogglePlayerHit ();
-		battleMoveScreen.text = "Attempt to print 'Hello World' to your console.";
+		battleMoveScreen.text = "Prepare for battle!";
 		
 		playerMove1.text = GameInformation.PlayerMoveOne.AbilityName;
 		playerMove2.text = GameInformation.PlayerMoveTwo.AbilityName;
@@ -157,7 +159,8 @@ public class BattleGUI : MonoBehaviour {
 		case(BattleStates.WIN):
 			battleMoveScreen.text = "You may proceed!";
 			GameInformation.helloWorldDefeated = true;
-			Application.LoadLevel("Phase0");
+			AutoFade.LoadLevel("Phase0",1,1,Color.white);
+//			Application.LoadLevel("Phase0");
 			break;
 		}
 		playerHealthSlider.value = battleScripts.playerCurrentHealth;
@@ -282,6 +285,10 @@ public class BattleGUI : MonoBehaviour {
 
 			battleCounter = 1;
 		}
+	}
+
+	public void PlaySound () {
+		audio.Play();
 	}
 
 
